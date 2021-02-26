@@ -19,13 +19,19 @@ const io = require("socket.io")(server);
 const registerLoginHandlers = require("./socket_logic/loginHandler.js");
 
 const onConnection = (socket) => {
-  console.log(`Socket: ${socket.id} connected`);
+  console.log(`Socket: ${socket.id} connected \n`);
 
   registerLoginHandlers(io, socket);
   // We could call more socket handlers here
 
+  socket.on("setUsername", (payload) => {
+    console.log(
+      `Socket: ${socket.id}\nWants to set their name to: ${payload}\n`
+    );
+  });
+
   socket.on("disconnecting", (socket) => {
-    console.log(`Socket: ${socket.id} left`);
+    console.log(`Socket: ${socket.id} left\n`);
   });
 };
 
