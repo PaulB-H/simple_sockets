@@ -14,12 +14,12 @@ const server = app.listen(port, () => {
 const io = require("socket.io")(server);
 
 // Import socket handlers
-const socketConnectHandlers = require("./socket_logic/socketConnect.js");
+const registerLoginHandlers = require("./socket_logic/loginHandler.js");
 
 const onConnection = (socket) => {
   console.log(`Socket: ${socket.id} connected`);
 
-  socketConnectHandlers(io, socket);
+  registerLoginHandlers(io, socket);
   // We could call more socket handlers here
 
   socket.on("disconnecting", (socket) => {
