@@ -6,6 +6,8 @@ const port = process.env.PORT || 3000;
 // Set static folder for front-end
 app.use(express.static("./client"));
 
+// Create a server const for socket.io to use
+// Normally we just do app.listen here
 const server = app.listen(port, () => {
   console.log(`Listening on port: ${port} \n`);
 });
