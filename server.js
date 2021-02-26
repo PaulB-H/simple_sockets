@@ -17,12 +17,16 @@ const io = require("socket.io")(server);
 const socketConnectHandlers = require("./socket_logic/socketConnect.js");
 
 const onConnection = (socket) => {
+  console.log(`Socket: ${socket.id} connected`);
+
   socketConnectHandlers(io, socket);
   // We could call more socket handlers here
+
+  socket.on("disconnecting", (socket) => {
+    console.log(`Socket: ${socket.id} left`);
+  });
 };
 
-// Whenever we get a connection,
-// -> run onConnection
 io.on("connection", onConnection);
 
 // Serves our front end
