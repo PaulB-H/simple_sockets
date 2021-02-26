@@ -18,10 +18,35 @@
       padding: 0;
       box-sizing: border-box;
     }
+    body {
+      margin: 10px;
+    }
   </style>
   <body>
     <!-- Content -->
-    <div id="content"></div>
+    <div id="content">
+      <!-- Set Name UI -->
+      <div id="set-name-ui">
+        <div id="error-container"></div>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          value=""
+          placeholder="Enter your name!"
+          style="padding: 3px"
+        />
+        <button
+          style="padding: 3px"
+          type="button"
+          name="button"
+          onclick="setUsername()"
+        >
+          Set Name
+        </button>
+      </div>
+      <!-- END Set Name UI -->
+    </div>
     <!-- END Content -->
 
     <!-- Scriptbox (Just so I can collapse this) -->
