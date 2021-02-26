@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Set static folder for front-end
-app.use(express.static("./view"));
+app.use(express.static("./client"));
 
 const server = app.listen(port, () => {
   console.log(`Listening on port: ${port} \n`);
