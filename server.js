@@ -24,6 +24,7 @@ const users = new Set();
 
 const onConnection = (socket) => {
   console.log(`Socket: ${socket.id} connected \n`);
+  socket.emit("connected");
 
   // Test Handlers
   registerTestHandlers(io, socket, users);

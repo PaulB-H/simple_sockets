@@ -24,6 +24,12 @@ function hideMainSections() {
   });
 }
 
+socket.on("connected", () => {
+  console.log("Connected");
+  hideMainSections();
+  setNameUI.classList.remove("d-none");
+});
+
 const setUsername = () => {
   const nameValue = nameInput.value;
   socket.emit("setUsername", nameValue);
