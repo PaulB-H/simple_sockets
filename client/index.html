@@ -21,6 +21,9 @@
     body {
       margin: 10px;
     }
+    .d-none {
+      display: none;
+    }
   </style>
   <body>
     <!-- Content -->
@@ -46,6 +49,28 @@
         </button>
       </div>
       <!-- END Set Name UI -->
+
+      <!-- Set Room UI -->
+      <div id="set-room-ui" class="d-none">
+        <div id="error-container"></div>
+        <input
+          id="name-input"
+          type="number"
+          name="name"
+          value=""
+          placeholder="Enter room number"
+          style="padding: 3px"
+        />
+        <button
+          style="padding: 3px"
+          type="button"
+          name="button"
+          onclick="setRoom()"
+        >
+          Set Room
+        </button>
+      </div>
+      <!-- END Set Room UI -->
     </div>
     <!-- END Content -->
 
