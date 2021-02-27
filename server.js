@@ -20,9 +20,9 @@ const registerDisconnectHandlers = require("./socket_logic/disconnectHandler.js"
 
 // const registerLoginHandlers = require("./socket_logic/loginHandler.js");
 
-const onConnection = (socket) => {
-  let users = new Set();
+const users = new Set();
 
+const onConnection = (socket) => {
   console.log(`Socket: ${socket.id} connected \n`);
 
   // Test Handlers
