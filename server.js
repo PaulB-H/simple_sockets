@@ -15,20 +15,18 @@ const server = app.listen(port, () => {
 // Attach socket.io to the server
 const io = require("socket.io")(server);
 
-// Import socket handlers
-const registerLoginHandlers = require("./socket_logic/loginHandler.js");
+const registerTestHandlers = require("./socket_logic/testHandler.js");
+
+// const registerLoginHandlers = require("./socket_logic/loginHandler.js");
 
 const onConnection = (socket) => {
   console.log(`Socket: ${socket.id} connected \n`);
 
-  registerLoginHandlers(io, socket);
-  // We could call more socket handlers here
+  // Test Handlers
+  registerTestHandlers(io, socket);
 
-  socket.on("setUsername", (payload) => {
-    console.log(
-      `Socket: ${socket.id}\nWants to set their name to: ${payload}\n`
-    );
-  });
+  // Login Handlers
+  // registerLoginHandlers(io, socket);
 
   socket.on("disconnecting", (socket) => {
     console.log(`Socket: ${socket.id} left\n`);
