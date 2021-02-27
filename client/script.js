@@ -49,9 +49,9 @@ socket.on("alreadyName", () => {
   console.log("That already is my name...");
 });
 
-const setRoom = () => {
-  const roomValue = roomInput.value;
-  socket.emit("setRoom", roomValue);
+const reqJoinRoom = () => {
+  const roomNum = roomInput.value;
+  socket.emit("reqJoinRoom", roomNum);
 };
 
 socket.on("disconnect", () => {
