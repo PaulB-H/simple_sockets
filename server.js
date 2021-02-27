@@ -16,6 +16,7 @@ const server = app.listen(port, () => {
 const io = require("socket.io")(server);
 
 const registerTestHandlers = require("./socket_logic/testHandler.js");
+const registerDisconnectHandlers = require("./socket_logic/disconnectHandler.js");
 
 // const registerLoginHandlers = require("./socket_logic/loginHandler.js");
 
@@ -25,12 +26,11 @@ const onConnection = (socket) => {
   // Test Handlers
   registerTestHandlers(io, socket);
 
+  // Disconnect Handler
+  registerDisconnectHandlers(io, socket);
+
   // Login Handlers
   // registerLoginHandlers(io, socket);
-
-  socket.on("disconnecting", (socket) => {
-    console.log(`Socket: ${socket.id} left\n`);
-  });
 };
 
 io.on("connection", onConnection);
