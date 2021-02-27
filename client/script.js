@@ -16,6 +16,14 @@ mainSections.add(noConnUI);
 
 console.log(mainSections);
 
+function hideMainSections() {
+  mainSections.forEach((elem) => {
+    if (!elem.classList.contains("d-none")) {
+      elem.classList.add("d-none");
+    }
+  });
+}
+
 const setUsername = () => {
   const nameValue = nameInput.value;
   socket.emit("setUsername", nameValue);
@@ -42,11 +50,7 @@ const setRoom = () => {
 
 socket.on("disconnect", () => {
   console.log("Disconnect");
-  mainSections.forEach((element) => {
-    if (!element.classList.contains("d-none")) {
-      element.classList.add("d-none");
-    }
-  });
+  hideMainSections();
   setNameUI.classList.remove("d-none");
   noConnUI.classList.remove("d-none");
 });
