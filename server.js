@@ -30,7 +30,7 @@ const onConnection = (socket) => {
   registerTestHandlers(io, socket, users);
 
   // Disconnect Handler
-  registerDisconnectHandlers(io, socket);
+  registerDisconnectHandlers(io, socket, users);
 
   // Login Handlers
   // registerLoginHandlers(io, socket);
