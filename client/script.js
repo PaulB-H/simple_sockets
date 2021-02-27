@@ -11,6 +11,8 @@ const setRoomUI = document.getElementById("set-room-ui");
 mainSections.add(setRoomUI);
 const roomInput = document.getElementById("room-input");
 
+console.log(mainSections);
+
 const setUsername = () => {
   const nameValue = nameInput.value;
   socket.emit("setUsername", nameValue);
@@ -34,3 +36,12 @@ const setRoom = () => {
   const roomValue = roomInput.value;
   socket.emit("setRoom", roomValue);
 };
+
+socket.on("disconnect", () => {
+  console.log("Disconnect");
+  mainSections.forEach((element) => {
+    if (!element.classList.contains("d-none")) {
+      element.classList.add("d-none");
+    }
+  });
+});
