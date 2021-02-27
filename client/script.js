@@ -2,12 +2,13 @@ const socket = io();
 
 // Name UI & Elements
 const setNameUI = document.getElementById("set-name-ui");
-const nameDiv = document.getElementById("name-input");
+const nameInput = document.getElementById("name-input");
 
 const setRoomUI = document.getElementById("set-room-ui");
+const roomInput = document.getElementById("room-input");
 
 const setUsername = () => {
-  const nameValue = nameDiv.value;
+  const nameValue = nameInput.value;
   socket.emit("setUsername", nameValue);
 };
 
@@ -24,3 +25,8 @@ socket.on("nameTaken", () => {
 socket.on("alreadyName", () => {
   console.log("That already is my name...");
 });
+
+const setRoom = () => {
+  const roomValue = roomInput.value;
+  socket.emit("setRoom", roomValue);
+};
