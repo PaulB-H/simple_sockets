@@ -1,10 +1,14 @@
 const socket = io();
 
+const mainSections = new Set();
+
 // Name UI & Elements
 const setNameUI = document.getElementById("set-name-ui");
+mainSections.add(setNameUI);
 const nameInput = document.getElementById("name-input");
 
 const setRoomUI = document.getElementById("set-room-ui");
+mainSections.add(setRoomUI);
 const roomInput = document.getElementById("room-input");
 
 const setUsername = () => {
