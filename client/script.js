@@ -11,6 +11,9 @@ const setRoomUI = document.getElementById("set-room-ui");
 mainSections.add(setRoomUI);
 const roomInput = document.getElementById("room-input");
 
+const noConnUI = document.getElementById("no-conn-ui");
+mainSections.add(noConnUI);
+
 console.log(mainSections);
 
 const setUsername = () => {
@@ -44,4 +47,6 @@ socket.on("disconnect", () => {
       element.classList.add("d-none");
     }
   });
+  setNameUI.classList.remove("d-none");
+  noConnUI.classList.remove("d-none");
 });

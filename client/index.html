@@ -22,7 +22,7 @@
       margin: 10px;
     }
     .d-none {
-      display: none;
+      display: none !important;
     }
   </style>
   <body>
@@ -71,6 +71,25 @@
         </button>
       </div>
       <!-- END Set Room UI -->
+
+      <overlay
+        id="no-conn-ui"
+        class="d-none"
+        style="
+          z-index: 5;
+          background-color: black;
+          width: 100vw;
+          height: 100vh;
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <h4 style="color: white">NO CONNECTION</h4>
+      </overlay>
     </div>
     <!-- END Content -->
 
