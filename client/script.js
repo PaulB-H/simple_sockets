@@ -25,8 +25,8 @@ const createRoomInputPass = document.getElementById("create-room-inputPass");
 const createRoomError = document.getElementById("create-room-error");
 errorDivs.add(createRoomError);
 
-const noConnUI = document.getElementById("no-conn-ui");
-mainSections.add(noConnUI);
+const noConnOverlay = document.getElementById("no-conn-overlay");
+mainSections.add(noConnOverlay);
 
 function hideMainSections() {
   mainSections.forEach((elem) => {
