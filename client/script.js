@@ -3,21 +3,30 @@ const socket = io();
 const mainSections = new Set();
 const errorDivs = new Set();
 
-// Name UI & Elements
+// Set Name UI & Elements
 const setNameUI = document.getElementById("set-name-ui");
 mainSections.add(setNameUI);
-const nameInput = document.getElementById("name-input");
-const nameError = document.getElementById("set-name-error");
-errorDivs.add(nameError);
+const setNameInput = document.getElementById("set-name-input");
+const setNameError = document.getElementById("set-name-error");
+errorDivs.add(setNameError);
 
+// Join Room UI & Elements
 const setRoomUI = document.getElementById("join-room-ui");
 mainSections.add(setRoomUI);
 const roomInput = document.getElementById("join-room-input");
+const joinRoomError = document.getElementById("join-room-error");
+errorDivs.add(joinRoomError);
+
+// Create Room UI & Elements
+const createRoomUI = document.getElementById("create-room-ui");
+mainSections.add(createRoomUI);
+const createRoomInputNum = document.getElementById("create-room-inputNum");
+const createRoomInputPass = document.getElementById("create-room-inputPass");
+const createRoomError = document.getElementById("create-room-error");
+errorDivs.add(createRoomError);
 
 const noConnUI = document.getElementById("no-conn-ui");
 mainSections.add(noConnUI);
-
-console.log(mainSections);
 
 function hideMainSections() {
   mainSections.forEach((elem) => {
