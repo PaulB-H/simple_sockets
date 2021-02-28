@@ -76,6 +76,5 @@ const reqJoinRoom = () => {
 socket.on("disconnect", () => {
   console.log("Disconnect");
   hideMainSections();
-  setNameUI.classList.remove("d-none");
-  noConnUI.classList.remove("d-none");
+  noConnOverlay.classList.remove("d-none");
 });
