@@ -30,7 +30,7 @@
     <div id="content">
       <!-- Set Name UI -->
       <div id="set-name-ui">
-        <div id="error-container"></div>
+        <div id="set-name-error"></div>
         <input
           id="name-input"
           type="text"
@@ -50,13 +50,13 @@
       </div>
       <!-- END Set Name UI -->
 
-      <!-- Set Room UI -->
-      <div id="set-room-ui" class="d-none">
-        <div id="error-container"></div>
+      <!-- Join Room UI -->
+      <div id="join-room-ui" class="d-none">
+        <div id="join-room-error"></div>
         <input
-          id="room-input"
+          id="join-room-input"
           type="number"
-          name="name"
+          name="Room Number"
           value=""
           placeholder="Enter room number"
           style="padding: 3px"
@@ -67,7 +67,7 @@
           name="button"
           onclick="reqJoinRoom()"
         >
-          Request to join room
+          Join Room
         </button>
       </div>
       <!-- END Set Room UI -->
