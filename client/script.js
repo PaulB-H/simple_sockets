@@ -10,25 +10,13 @@ const setNameInput = document.getElementById("set-name-input");
 const setNameError = document.getElementById("set-name-error");
 errorDivs.add(setNameError);
 
-// Join & Create Room Wrapper
-const joinCreateWrap = document.getElementById("join-&-create-wrap");
-mainSections.add(joinCreateWrap);
-
-// Join Room UI & Elements
-const setRoomUI = document.getElementById("join-room-ui");
-// mainSections.add(setRoomUI);
-const joinRoomInputNum = document.getElementById("join-room-inputNum");
-const joinRoomInputPass = document.getElementById("join-room-inputPass");
-const joinRoomError = document.getElementById("join-room-error");
+// Join or Create Room UI & Elements
+const joinCreateUI = document.getElementById("join-create-ui");
+mainSections.add(joinCreateUI);
+const joinRoomInputNum = document.getElementById("join-create-inputNum");
+const joinRoomInputPass = document.getElementById("join-create-inputPass");
+const joinRoomError = document.getElementById("join-create-error");
 errorDivs.add(joinRoomError);
-
-// Create Room UI & Elements
-const createRoomUI = document.getElementById("create-room-ui");
-// mainSections.add(createRoomUI);
-const createRoomInputNum = document.getElementById("create-room-inputNum");
-const createRoomInputPass = document.getElementById("create-room-inputPass");
-const createRoomError = document.getElementById("create-room-error");
-errorDivs.add(createRoomError);
 
 const noConnOverlay = document.getElementById("no-conn-overlay");
 mainSections.add(noConnOverlay);
@@ -59,7 +47,7 @@ const setUsername = () => {
 socket.on("nameSet", (payload) => {
   console.log(`Name set to ${payload}`);
   hideMainSections();
-  joinCreateWrap.classList.remove("d-none");
+  joinCreateUI.classList.remove("d-none");
 });
 
 socket.on("nameTaken", () => {
