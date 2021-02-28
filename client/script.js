@@ -73,6 +73,10 @@ const reqJoinRoom = () => {
   socket.emit("reqJoinRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
+socket.on("room404", () => {
+  joinRoomError.innerText = "Error: Room not found";
+});
+
 socket.on("disconnect", () => {
   console.log("Disconnect");
   hideMainSections();
