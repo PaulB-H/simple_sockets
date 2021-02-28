@@ -1,15 +1,18 @@
 const socket = io();
 
 const mainSections = new Set();
+const errorDivs = new Set();
 
 // Name UI & Elements
 const setNameUI = document.getElementById("set-name-ui");
 mainSections.add(setNameUI);
 const nameInput = document.getElementById("name-input");
+const nameError = document.getElementById("set-name-error");
+errorDivs.add(nameError);
 
-const setRoomUI = document.getElementById("set-room-ui");
+const setRoomUI = document.getElementById("join-room-ui");
 mainSections.add(setRoomUI);
-const roomInput = document.getElementById("room-input");
+const roomInput = document.getElementById("join-room-input");
 
 const noConnUI = document.getElementById("no-conn-ui");
 mainSections.add(noConnUI);
