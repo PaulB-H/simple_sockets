@@ -23,6 +23,7 @@ hr {
   display: none !important;
 }
 
+#set-name-ui,
 #join-create-ui {
   display: flex;
   flex-direction: column;
