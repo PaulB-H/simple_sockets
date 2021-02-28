@@ -13,7 +13,8 @@ errorDivs.add(setNameError);
 // Join Room UI & Elements
 const setRoomUI = document.getElementById("join-room-ui");
 mainSections.add(setRoomUI);
-const roomInput = document.getElementById("join-room-input");
+const joinRoomInputNum = document.getElementById("join-room-inputNum");
+const joinRoomInputPass = document.getElementById("join-room-inputPass");
 const joinRoomError = document.getElementById("join-room-error");
 errorDivs.add(joinRoomError);
 
