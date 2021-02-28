@@ -52,6 +52,15 @@ socket.on("nameSet", (payload) => {
 
 socket.on("nameTaken", () => {
   console.log("Name taken");
+  setNameError.classList.contains("d-none") &&
+    setNameError.classList.remove("d-none");
+
+  window.setTimeout(() => {
+    setNameError.classList.add("d-none");
+    setNameError.innerText = "";
+  }, 3000);
+
+  setNameError.innerText = "Error: Name taken";
 });
 
 socket.on("alreadyName", () => {
