@@ -35,12 +35,12 @@ Password: ${pass === null ? "None" : "Included"}
 
       if (roomExists === false) {
         console.log("Room does not exist\n");
-        // Emit "roomNotExist"
+        socket.emit("room404");
       }
     } else {
-      console.log("No rooms exist\n");
       // rooms.length is <= 0
-      // Emit "noRooms"
+      console.log("No rooms exist\n");
+      socket.emit("room404");
     }
   });
 };
