@@ -25,6 +25,35 @@
     .d-none {
       display: none !important;
     }
+    button {
+      margin: 10px;
+    }
+    input {
+      margin: 10px;
+    }
+    h3 {
+      text-align: center;
+    }
+
+    /* Hide spinner */
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    /* END Hide spinner */
+
+    /* Will apply to anything with error in the ID */
+    [id*="error"] {
+      margin: 10px;
+      background-color: yellow;
+      padding: 5px;
+    }
   </style>
   <body>
     <!-- Content -->
@@ -51,65 +80,91 @@
       </div>
       <!-- END Set Name UI -->
 
-      <!-- Join Room UI -->
-      <div id="join-room-ui" class="d-none">
-        <div id="join-room-error"></div>
-        <input
-          id="join-room-inputNum"
-          type="number"
-          name="Room Number"
-          value=""
-          placeholder="Enter room number"
-          style="padding: 3px"
-        />
-        <input
-          id="join-room-inputPass"
-          type="string"
-          name="Room Password"
-          value=""
-          placeholder="Enter room password"
-          style="padding: 3px"
-        />
-        <button
-          style="padding: 3px"
-          type="button"
-          name="button"
-          onclick="reqJoinRoom()"
+      <!-- Join & Create wrap -->
+      <div id="join-&-create-wrap" class="d-none" style="display: flex">
+        <!-- Join Room UI -->
+        <div
+          id="join-room-ui"
+          style="display: flex; flex-direction: column; max-width: 200px"
         >
-          Join Room
-        </button>
-      </div>
-      <!-- END Join Room UI -->
+          <h3>Join a room</h3>
 
-      <!-- Create Room UI -->
-      <div id="create-room-ui" class="d-none">
-        <div id="create-room-error"></div>
-        <input
-          id="create-room-inputNum"
-          type="number"
-          name="Room Number"
-          value=""
-          placeholder="Enter room number"
-          style="padding: 3px"
-        />
-        <input
-          id="create-room-inputPass"
-          type="string"
-          name="Room Password"
-          value=""
-          placeholder="Set password (optional)"
-          style="padding: 3px"
-        />
-        <button
-          style="padding: 3px"
-          type="button"
-          name="button"
-          onclick="reqCreateRoom()"
+          <hr style="margin: 15px" />
+
+          <div id="join-room-error"></div>
+          Room Number:
+          <input
+            id="join-room-inputNum"
+            type="number"
+            name="Room Number"
+            value=""
+            placeholder="Enter room number"
+            style="padding: 3px"
+          />
+
+          Password:
+          <input
+            id="join-room-inputPass"
+            type="string"
+            name="Room Password"
+            value=""
+            placeholder="Enter room password"
+            style="padding: 3px"
+          />
+
+          <button
+            style="padding: 3px"
+            type="button"
+            name="button"
+            onclick="reqJoinRoom()"
+          >
+            Join Room
+          </button>
+        </div>
+        <!-- END Join Room UI -->
+
+        <hr style="margin: 15px" />
+
+        <!-- Create Room UI -->
+        <div
+          id="create-room-ui"
+          style="display: flex; flex-direction: column; max-width: 200px"
         >
-          Create Room
-        </button>
+          <h3>Create a room</h3>
+
+          <hr style="margin: 15px" />
+
+          <div id="create-room-error"></div>
+          Room Number:
+          <input
+            id="create-room-inputNum"
+            type="number"
+            name="Room Number"
+            value=""
+            placeholder="Enter room number"
+            style="padding: 3px"
+          />
+          Password:
+          <input
+            id="create-room-inputPass"
+            type="string"
+            name="Room Password"
+            value=""
+            placeholder="Set password (optional)"
+            style="padding: 3px"
+          />
+          <button
+            style="padding: 3px"
+            type="button"
+            name="button"
+            onclick="reqCreateRoom()"
+          >
+            Create Room
+          </button>
+        </div>
+        <!-- END Create Room UI -->
       </div>
-      <!-- END Create Room UI -->
+      <!-- END Join & Create wrap -->
 
       <overlay
         id="no-conn-overlay"
