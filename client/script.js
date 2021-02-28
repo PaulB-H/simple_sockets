@@ -21,11 +21,19 @@ errorDivs.add(joinCreateError);
 const noConnOverlay = document.getElementById("no-conn-overlay");
 mainSections.add(noConnOverlay);
 
-const timeouts = new Set();
-const clearAllTimeouts = () => {
-  timeouts.forEach((timeout) => {
-    window.clearTimeout(timeout);
-  });
+let hideErrorTimeout;
+
+const startHideErrorTimeout = () => {
+  hideErrorTimeout = window.setTimeout(() => {
+    errorDivs.forEach((elem) => {
+      elem.classList.add("d-none");
+      elem.innerText = "";
+    });
+  }, 3000);
+};
+
+const clearErrorTimeout = () => {
+  window.clearTimeout(hideErrorTimeout);
 };
 
 errorDivs.forEach((elem) => {
@@ -77,6 +85,22 @@ socket.on("alreadyName", () => {
 const reqJoinRoom = () => {
   const roomNum = joinCreateInputNum.value;
   const roomPass = joinCreateInputPass.value;
+
+  if (roomNum.length === 0) {
+    joinCreateError.classList.contains("d-none") &&
+      joinCreateError.classList.remove("d-none");
+
+    // Clear existing timeout
+    clearErrorTimeout();
+
+    joinCreateError.innerText = "Enter room number!";
+
+    // Call timeout to clear err after 3 sec
+    startHideErrorTimeout();
+
+    return;
+  }
+
   console.log(
     `Requesting to join room # ${roomNum} ${
       roomPass !== "" ? "with a" : "without a"
