@@ -109,6 +109,27 @@ const reqJoinRoom = () => {
   socket.emit("reqJoinRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
+const reqCreateRoom = () => {
+  const roomNum = joinCreateInputNum.value;
+  const roomPass = joinCreateInputPass.value;
+
+  if (roomNum.length === 0) {
+    joinCreateError.classList.contains("d-none") &&
+      joinCreateError.classList.remove("d-none");
+    clearErrorTimeout();
+    joinCreateError.innerText = "Enter room number!";
+    startHideErrorTimeout();
+    return;
+  }
+
+  console.log(
+    `Requesting to create room # ${roomNum} ${
+      roomPass !== "" ? "with a" : "without a"
+    } password`
+  );
+  socket.emit("reqCreateRoom", roomNum, roomPass === "" ? null : roomPass);
+};
+
 socket.on("room404", () => {
   console.log("Received room 404");
   joinCreateError.classList.contains("d-none") &&
