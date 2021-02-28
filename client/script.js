@@ -70,6 +70,15 @@ const reqJoinRoom = () => {
 };
 
 socket.on("room404", () => {
+  console.log("Received room 404");
+  joinCreateError.classList.contains("d-none") &&
+    joinCreateError.classList.remove("d-none");
+
+  window.setTimeout(() => {
+    joinCreateError.classList.add("d-none");
+    joinCreateError.innerText = "";
+  }, 3000);
+
   joinCreateError.innerText = "Error: Room not found";
 });
 
