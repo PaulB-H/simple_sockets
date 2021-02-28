@@ -13,10 +13,10 @@ errorDivs.add(setNameError);
 // Join or Create Room UI & Elements
 const joinCreateUI = document.getElementById("join-create-ui");
 mainSections.add(joinCreateUI);
-const joinRoomInputNum = document.getElementById("join-create-inputNum");
-const joinRoomInputPass = document.getElementById("join-create-inputPass");
-const joinRoomError = document.getElementById("join-create-error");
-errorDivs.add(joinRoomError);
+const joinCreateInputNum = document.getElementById("join-create-inputNum");
+const joinCreateInputPass = document.getElementById("join-create-inputPass");
+const joinCreateError = document.getElementById("join-create-error");
+errorDivs.add(joinCreateError);
 
 const noConnOverlay = document.getElementById("no-conn-overlay");
 mainSections.add(noConnOverlay);
@@ -59,8 +59,8 @@ socket.on("alreadyName", () => {
 });
 
 const reqJoinRoom = () => {
-  const roomNum = joinRoomInputNum.value;
-  const roomPass = joinRoomInputPass.value;
+  const roomNum = joinCreateInputNum.value;
+  const roomPass = joinCreateInputPass.value;
   console.log(
     `Requesting to join room # ${roomNum} ${
       roomPass !== "" ? "with a" : "without a"
@@ -70,7 +70,7 @@ const reqJoinRoom = () => {
 };
 
 socket.on("room404", () => {
-  joinRoomError.innerText = "Error: Room not found";
+  joinCreateError.innerText = "Error: Room not found";
 });
 
 socket.on("disconnect", () => {
