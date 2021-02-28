@@ -10,9 +10,13 @@ const setNameInput = document.getElementById("set-name-input");
 const setNameError = document.getElementById("set-name-error");
 errorDivs.add(setNameError);
 
+// Join & Create Room Wrapper
+const joinCreateWrap = document.getElementById("join-&-create-wrap");
+mainSections.add(joinCreateWrap);
+
 // Join Room UI & Elements
 const setRoomUI = document.getElementById("join-room-ui");
-mainSections.add(setRoomUI);
+// mainSections.add(setRoomUI);
 const joinRoomInputNum = document.getElementById("join-room-inputNum");
 const joinRoomInputPass = document.getElementById("join-room-inputPass");
 const joinRoomError = document.getElementById("join-room-error");
@@ -20,7 +24,7 @@ errorDivs.add(joinRoomError);
 
 // Create Room UI & Elements
 const createRoomUI = document.getElementById("create-room-ui");
-mainSections.add(createRoomUI);
+// mainSections.add(createRoomUI);
 const createRoomInputNum = document.getElementById("create-room-inputNum");
 const createRoomInputPass = document.getElementById("create-room-inputPass");
 const createRoomError = document.getElementById("create-room-error");
@@ -28,6 +32,10 @@ errorDivs.add(createRoomError);
 
 const noConnOverlay = document.getElementById("no-conn-overlay");
 mainSections.add(noConnOverlay);
+
+errorDivs.forEach((elem) => {
+  if (!elem.classList.contains("d-none")) elem.classList.add("d-none");
+});
 
 function hideMainSections() {
   mainSections.forEach((elem) => {
@@ -50,8 +58,8 @@ const setUsername = () => {
 
 socket.on("nameSet", (payload) => {
   console.log(`Name set to ${payload}`);
-  setNameUI.classList.add("d-none");
-  setRoomUI.classList.remove("d-none");
+  hideMainSections();
+  joinCreateWrap.classList.remove("d-none");
 });
 
 socket.on("nameTaken", () => {
