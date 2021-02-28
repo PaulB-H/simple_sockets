@@ -63,8 +63,14 @@ socket.on("alreadyName", () => {
 });
 
 const reqJoinRoom = () => {
-  const roomNum = roomInput.value;
-  socket.emit("reqJoinRoom", roomNum);
+  const roomNum = joinRoomInputNum.value;
+  const roomPass = joinRoomInputPass.value;
+  console.log(
+    `Requesting to join room # ${roomNum} ${
+      roomPass !== "" ? "with a" : "without a"
+    } password`
+  );
+  socket.emit("reqJoinRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
 socket.on("disconnect", () => {
