@@ -44,7 +44,7 @@ socket.on("connected", () => {
 });
 
 const setUsername = () => {
-  const nameValue = nameInput.value;
+  const nameValue = setNameInput.value;
   socket.emit("setUsername", nameValue);
 };
 
