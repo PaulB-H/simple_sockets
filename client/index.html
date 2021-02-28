@@ -4,91 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello Socket.io</title>
+    <title>Simple Sockets(.io)</title>
     <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Jura&amp;family=Nanum+Gothic&amp;family=EB+Garamond&amp;display=swap"
       rel="stylesheet"
     />
+    <!-- Local Style -->
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <!-- Local Style -->
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      margin: 10px;
-    }
-    .d-none {
-      display: none !important;
-    }
-    button {
-      margin: 10px;
-    }
-    input {
-      margin: 10px;
-    }
-    h3 {
-      text-align: center;
-    }
-
-    /* Hide spinner */
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    /* Firefox */
-    input[type="number"] {
-      -moz-appearance: textfield;
-    }
-    /* END Hide spinner */
-
-    /* Will apply to anything with error in the ID */
-    [id*="error"] {
-      margin: 10px;
-      background-color: yellow;
-      padding: 5px;
-    }
-  </style>
   <body>
     <!-- Content -->
     <div id="content">
       <!-- Set Name UI -->
       <div id="set-name-ui">
-        <div id="set-name-error"></div>
+        <div id="set-name-error" class="d-none"></div>
         <input
           id="set-name-input"
           type="text"
           name="Set Username"
           value=""
           placeholder="Enter your username"
-          style="padding: 3px"
         />
-        <button
-          style="padding: 3px"
-          type="button"
-          name="button"
-          onclick="setUsername()"
-        >
+        <button type="button" name="button" onclick="setUsername()">
           Set Username
         </button>
       </div>
       <!-- END Set Name UI -->
 
       <!-- Join or Create Room UI -->
-      <div
-        id="join-create-ui"
-        class="d-none"
-        style="display: flex; flex-direction: column; max-width: 200px"
-      >
+      <div id="join-create-ui" class="d-none" style="">
         <h3>Join or Create Room</h3>
 
-        <hr style="margin: 15px" />
+        <hr />
 
         <div id="join-create-error"></div>
         Room Number:
@@ -98,7 +48,6 @@
           name="Room Number"
           value=""
           placeholder="Enter room number"
-          style="padding: 3px"
         />
 
         Password:
@@ -108,45 +57,19 @@
           name="Room Password"
           value=""
           placeholder="Enter room password"
-          style="padding: 3px"
         />
 
-        <button
-          style="padding: 3px"
-          type="button"
-          name="button"
-          onclick="reqJoinRoom()"
-        >
+        <button type="button" name="button" onclick="reqJoinRoom()">
           Join Room
         </button>
 
-        <button
-          style="padding: 3px"
-          type="button"
-          name="button"
-          onclick="reqCreateRoom()"
-        >
+        <button type="button" name="button" onclick="reqCreateRoom()">
           Create Room
         </button>
       </div>
       <!-- END Join or Create Room UI -->
 
-      <overlay
-        id="no-conn-overlay"
-        class="d-none"
-        style="
-          z-index: 5;
-          background-color: black;
-          width: 100vw;
-          height: 100vh;
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        "
-      >
+      <overlay id="no-conn-overlay" class="d-none">
         <h4 style="color: white">NO CONNECTION</h4>
       </overlay>
     </div>

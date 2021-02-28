@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 10px;
+}
+h3 {
+  text-align: center;
+}
+input,
+button {
+  padding: 3px;
+  margin: 10px;
+}
+hr {
+  margin: 15px;
+}
+
+/* Helper Classes */
+.d-none {
+  display: none !important;
+}
+
+#join-create-ui {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+}
+
+#no-conn-overlay {
+  z-index: 5;
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hide Num-Input Spinner */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+/* END Hide Num-Input Spinner */
+
+/* Will apply to anything with error in the ID */
+[id*="error"] {
+  margin: 10px;
+  background-color: yellow;
+  padding: 5px;
+}
