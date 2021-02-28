@@ -3,7 +3,7 @@ module.exports = (io, socket, rooms) => {
     console.log(`
 Socket ID: ${socket.id}
 reqJoinRoom() ${reqRoomNum}
-${pass === undefined ? "No pass" : "Sent pass"}
+Password: ${pass === null ? "None" : "Included"}
     `);
 
     if (socket.username === undefined) {
