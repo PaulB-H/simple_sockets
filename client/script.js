@@ -21,6 +21,13 @@ errorDivs.add(joinCreateError);
 const noConnOverlay = document.getElementById("no-conn-overlay");
 mainSections.add(noConnOverlay);
 
+const timeouts = new Set();
+const clearAllTimeouts = () => {
+  timeouts.forEach((timeout) => {
+    window.clearTimeout(timeout);
+  });
+};
+
 errorDivs.forEach((elem) => {
   if (!elem.classList.contains("d-none")) elem.classList.add("d-none");
 });
