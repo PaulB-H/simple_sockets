@@ -60,39 +60,43 @@ Password: ${pass === null ? "None" : "Included"}
       return;
     }
 
+    let roomExists = false;
+
     // If there are rooms at all
     if (rooms.length > 0) {
       rooms.forEach((room) => {
         // Check for matching room num
         if (room.roomNum === reqRoomNum) {
           console.log("DENIED: Room exists\n");
+          roomExists = true;
           socket.emit("roomAlreadyExists");
-          return;
         }
       });
     }
 
-    console.log(`ACCEPTED: \nRoom # ${reqRoomNum} created \n`);
+    if (!roomExists) {
+      console.log(`ACCEPTED: \nRoom # ${reqRoomNum} created \n`);
 
-    // Join socket to room
-    socket.join(`${reqRoomNum}`);
+      // Join socket to room
+      socket.join(`${reqRoomNum}`);
 
-    // Add room to server rooms array
-    rooms.push({
-      roomNum: reqRoomNum,
-      pass: pass,
-      users: [socket],
-    });
+      // Add room to server rooms array
+      rooms.push({
+        roomNum: reqRoomNum,
+        pass: pass,
+        users: [socket],
+      });
 
-    const currentUsersArr = [];
-    rooms.forEach((item) => {
-      if (item.roomNum === reqRoomNum) {
-        item.users.forEach((socket) => currentUsersArr.push(socket.username));
-      }
-    });
-    console.log(currentUsersArr);
+      const currentUsersArr = [];
+      rooms.forEach((item) => {
+        if (item.roomNum === reqRoomNum) {
+          item.users.forEach((socket) => currentUsersArr.push(socket.username));
+        }
+      });
 
-    // Tell socket room was created
-    socket.emit("roomCreated", reqRoomNum, currentUsersArr);
+      // Tell socket room was created
+      // Also pass in list of users (which should only be them)
+      socket.emit("roomCreated", reqRoomNum, currentUsersArr);
+    }
   });
 };
