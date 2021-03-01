@@ -28,8 +28,11 @@ Password: ${pass === null ? "None" : "Included"}
             // if match join user
             // if not emit error
           } else {
-            console.log("Room has no pass, joined user\n");
-            // Join user to room
+            console.log(
+              `ACCEPTED: \nsocket.username: ${socket.username} \nJoined room #: ${reqRoomNum} \n`
+            );
+            socket.join(`${reqRoomNum}`);
+            socket.emit("joinSuccess", reqRoomNum);
           }
         }
       });
