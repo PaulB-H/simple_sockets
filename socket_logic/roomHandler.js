@@ -49,8 +49,7 @@ Password: ${pass === null ? "None" : "Included"}
   });
 
   socket.on("reqCreateRoom", (reqRoomNum, pass) => {
-    console.log(`
-Room Creation Request
+    console.log(`Room Creation Request
 Socket ID: ${socket.id}
 Room #: ${reqRoomNum}
 Password: ${pass === null ? "None" : "Included"}
