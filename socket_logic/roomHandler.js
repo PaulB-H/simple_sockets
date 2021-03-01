@@ -13,7 +13,7 @@ Password: ${pass === null ? "None" : "Included"}
     }
 
     // If there are rooms at all
-    if (rooms.length > 0) {
+    if (rooms.size > 0) {
       let roomExists = false;
 
       rooms.forEach((room) => {
@@ -42,7 +42,7 @@ Password: ${pass === null ? "None" : "Included"}
         socket.emit("room404");
       }
     } else {
-      // rooms.length is <= 0
+      // rooms.size is <= 0
       console.log("DENIED: No rooms exist\n");
       socket.emit("room404");
     }
@@ -63,7 +63,7 @@ Password: ${pass === null ? "None" : "Included"}
     let roomExists = false;
 
     // If there are rooms at all
-    if (rooms.length > 0) {
+    if (rooms.size > 0) {
       rooms.forEach((room) => {
         // Check for matching room num
         if (room.roomNum === reqRoomNum) {
@@ -80,23 +80,17 @@ Password: ${pass === null ? "None" : "Included"}
       // Join socket to room
       socket.join(`${reqRoomNum}`);
 
-      // Add room to server rooms array
-      rooms.push({
+      let newRoom = {
         roomNum: reqRoomNum,
         pass: pass,
-        users: [socket],
-      });
+        users: new Array(socket.username),
+      };
 
-      const currentUsersArr = [];
-      rooms.forEach((item) => {
-        if (item.roomNum === reqRoomNum) {
-          item.users.forEach((socket) => currentUsersArr.push(socket.username));
-        }
-      });
+      // Add room to server rooms set
+      rooms.add(newRoom);
 
       // Tell socket room was created
-      // Also pass in list of users (which should only be them)
-      socket.emit("roomCreated", reqRoomNum, currentUsersArr);
+      socket.emit("roomCreated", newRoom);
     }
   });
 };
