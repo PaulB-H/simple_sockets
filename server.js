@@ -31,10 +31,10 @@ const onConnection = (socket) => {
   registerUserNameHandlers(io, socket, users);
 
   // Room Handlers
-  registerRoomHandlers(io, socket, rooms);
+  registerRoomHandlers(io, socket, users, rooms);
 
   // Message Handlers
-  registerMessageHandlers(io, socket);
+  registerMessageHandlers(io, socket, users);
 
   // Disconnect Handler
   registerDisconnectHandlers(io, socket, users, rooms);
