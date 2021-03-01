@@ -7,6 +7,8 @@ module.exports = (io, socket, users) => {
       }
     });
 
+    message = escape(message);
+
     console.log(`Send Message Request
 Socket ID: ${currentUserObj.socketID}
 Socket Username: ${currentUserObj.socketUsername}

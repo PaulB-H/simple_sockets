@@ -1,9 +1,13 @@
+const validator = require("validator");
+
 module.exports = (io, socket, users) => {
   socket.on("setUsername", (newUserName) => {
     console.log(`Set Username Request
 Socket ID: ${socket.id}
 username: ${newUserName}
     `);
+
+    newUserName = escape(newUserName);
 
     let acceptRequest = true;
 
