@@ -18,6 +18,16 @@ const joinCreateInputPass = document.getElementById("join-create-inputPass");
 const joinCreateError = document.getElementById("join-create-error");
 errorDivs.add(joinCreateError);
 
+// Chat Room UI
+const chatRoomUI = document.getElementById("chat-room-ui");
+mainSections.add(chatRoomUI);
+const chatRoomNum = document.getElementById("chat-room-num");
+const chatRoomUsers = document.getElementById("chat-room-users");
+const chatRoomError = document.getElementById("chat-room-error");
+errorDivs.add(chatRoomError);
+const chatRoomMessages = document.getElementById("chat-room-messages");
+const chatRoomMsgInput = document.getElementById("chat-room-msg-input");
+
 const noConnOverlay = document.getElementById("no-conn-overlay");
 mainSections.add(noConnOverlay);
 
