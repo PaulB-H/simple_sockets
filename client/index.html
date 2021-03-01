@@ -70,6 +70,44 @@
       </div>
       <!-- END Join or Create Room UI -->
 
+      <!-- Chat Room UI -->
+      <div
+        id="chat-room-ui"
+        class="d-none"
+        style="display: flex; flex-direction: column"
+      >
+        <h3>Chat Room # <span id="chat-room-num"></span></h3>
+
+        Online:
+        <div id="chat-room-users">Paul, Alex, James</div>
+
+        <div id="chat-room-error" class="d-none"></div>
+
+        <div
+          id="chat-room-messages"
+          style="
+            display: flex;
+            flex-direction: row-reverse;
+            min-height: 50vh;
+            min-width: 100px;
+            border: 1px solid black;
+          "
+        ></div>
+
+        Message:
+        <input
+          id="chat-room-msg-input"
+          type="test"
+          name="Message text"
+          value=""
+          placeholder="Enter message"
+        />
+        <button type="button" name="button" onclick="sendMessage()">
+          Send Message
+        </button>
+      </div>
+      <!-- END Chat Room UI -->
+
       <overlay id="no-conn-overlay" class="d-none">
         <h4 style="color: white">NO CONNECTION</h4>
       </overlay>
