@@ -7,6 +7,8 @@ Room #: ${reqRoomNum}
 Password: ${pass === null ? "None" : "Included"}
     `);
 
+    reqRoomNum = validator.escape(reqRoomNum);
+
     let currentUserObj;
     users.forEach((user) => {
       if (user.socketID === socket.id) {

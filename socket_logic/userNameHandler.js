@@ -7,7 +7,7 @@ Socket ID: ${socket.id}
 username: ${newUserName}
     `);
 
-    newUserName = escape(newUserName);
+    newUserName = validator.escape(newUserName);
 
     let acceptRequest = true;
 

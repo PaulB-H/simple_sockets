@@ -1,3 +1,5 @@
+const validator = require("validator");
+
 module.exports = (io, socket, users) => {
   socket.on("sendMessage", (message) => {
     let currentUserObj;
@@ -7,7 +9,8 @@ module.exports = (io, socket, users) => {
       }
     });
 
-    message = escape(message);
+    message = validator.escape(message);
+    console.log(validator);
 
     console.log(`Send Message Request
 Socket ID: ${currentUserObj.socketID}
