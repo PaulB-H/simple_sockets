@@ -162,6 +162,11 @@ socket.on("roomCreated", (newRoom) => {
   chatRoomUI.classList.remove("d-none");
 });
 
+const sendMessage = () => {
+  const message = chatRoomMsgInput.value;
+  socket.emit("sendMessage", message);
+};
+
 socket.on("room404", () => {
   console.log("Received room 404");
   joinCreateError.classList.contains("d-none") &&
