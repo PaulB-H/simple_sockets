@@ -22,7 +22,7 @@ const registerDisconnectHandlers = require("./socket_logic/disconnectHandler.js"
 // const registerLoginHandlers = require("./socket_logic/loginHandler.js");
 
 const users = new Set();
-const rooms = new Array();
+const rooms = new Set();
 
 const onConnection = (socket) => {
   console.log(`Socket: ${socket.id} connected \n`);
@@ -35,7 +35,7 @@ const onConnection = (socket) => {
   registerRoomHandlers(io, socket, rooms);
 
   // Disconnect Handler
-  registerDisconnectHandlers(io, socket, users);
+  registerDisconnectHandlers(io, socket, users, rooms);
 
   // Login Handlers
   // registerLoginHandlers(io, socket);
