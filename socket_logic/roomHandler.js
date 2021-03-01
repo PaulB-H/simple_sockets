@@ -81,6 +81,7 @@ Password: ${pass === null ? "None" : "Included"}
     rooms.push({
       roomNum: reqRoomNum,
       pass: pass,
+      users: [socket],
     });
 
     // Tell socket room was created
