@@ -1,13 +1,14 @@
 module.exports = (io, socket, rooms) => {
   socket.on("reqJoinRoom", (reqRoomNum, pass) => {
     console.log(`
+Join Room Request
 Socket ID: ${socket.id}
-reqJoinRoom() ${reqRoomNum}
+Room #: ${reqRoomNum}
 Password: ${pass === null ? "None" : "Included"}
     `);
 
     if (socket.username === undefined) {
-      console.log("Socket has no .username \nRequest denied \n");
+      console.log("DENIED: No username\n");
       return;
     }
 
@@ -34,12 +35,12 @@ Password: ${pass === null ? "None" : "Included"}
       });
 
       if (roomExists === false) {
-        console.log("Room does not exist\n");
+        console.log("DENIED: Room does not exist\n");
         socket.emit("room404");
       }
     } else {
       // rooms.length is <= 0
-      console.log("No rooms exist\n");
+      console.log("DENIED: No rooms exist\n");
       socket.emit("room404");
     }
   });
@@ -53,7 +54,7 @@ Password: ${pass === null ? "None" : "Included"}
     `);
 
     if (socket.username === undefined) {
-      console.log("Socket has no .username \nRequest denied \n");
+      console.log("DENIED: No username\n");
       return;
     }
 
@@ -62,16 +63,17 @@ Password: ${pass === null ? "None" : "Included"}
       rooms.forEach((room) => {
         // Check for matching room num
         if (room.roomNum === reqRoomNum) {
-          console.log("Room exists\n");
+          console.log("DENIED: Room exists\n");
           socket.emit("roomAlreadyExists");
           return;
         }
       });
     }
 
+    console.log(`ACCEPTED: \nRoom # ${reqRoomNum} created \n`);
+
     // Join socket to room
     socket.join(`${reqRoomNum}`);
-    console.log(socket.rooms);
 
     // Add room to server rooms array
     rooms.push({
