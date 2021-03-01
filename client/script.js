@@ -140,6 +140,17 @@ const reqCreateRoom = () => {
   socket.emit("reqCreateRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
+socket.on("roomCreated", (roomNum, currentUsersArr) => {
+  console.log(`Room # ${roomNum} was created`);
+  hideMainSections();
+  chatRoomNum.innerText = roomNum;
+  currentUsersArr.forEach((username) => {
+    chatRoomUsers.innerText += `${username} |`;
+  });
+
+  chatRoomUI.classList.remove("d-none");
+});
+
 socket.on("room404", () => {
   console.log("Received room 404");
   joinCreateError.classList.contains("d-none") &&
