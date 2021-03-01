@@ -15,11 +15,9 @@ const server = app.listen(port, () => {
 // Attach socket.io to the server
 const io = require("socket.io")(server);
 
-const registerTestHandlers = require("./socket_logic/testHandler.js");
+const registerUserNameHandlers = require("./socket_logic/userNameHandler.js");
 const registerRoomHandlers = require("./socket_logic/roomHandler.js");
 const registerDisconnectHandlers = require("./socket_logic/disconnectHandler.js");
-
-// const registerLoginHandlers = require("./socket_logic/loginHandler.js");
 
 const users = new Set();
 const rooms = new Set();
@@ -28,17 +26,14 @@ const onConnection = (socket) => {
   console.log(`Socket: ${socket.id} connected \n`);
   socket.emit("connected");
 
-  // Test Handlers
-  registerTestHandlers(io, socket, users);
+  // User Name Handlers
+  registerUserNameHandlers(io, socket, users);
 
   // Room Handlers
   registerRoomHandlers(io, socket, rooms);
 
   // Disconnect Handler
   registerDisconnectHandlers(io, socket, users, rooms);
-
-  // Login Handlers
-  // registerLoginHandlers(io, socket);
 };
 
 io.on("connection", onConnection);
