@@ -32,6 +32,7 @@ Password: ${pass === null ? "None" : "Included"}
               `ACCEPTED: \nsocket.username: ${socket.username} \nJoined room #: ${reqRoomNum} \n`
             );
             socket.join(`${reqRoomNum}`);
+            socket.currentRoom = reqRoomNum;
             room.users.push(socket.username);
             socket.emit("joinSuccess", room);
           }
@@ -80,6 +81,8 @@ Password: ${pass === null ? "None" : "Included"}
 
       // Join socket to room
       socket.join(`${reqRoomNum}`);
+
+      socket.currentRoom = reqRoomNum;
 
       let newRoom = {
         roomNum: reqRoomNum,
