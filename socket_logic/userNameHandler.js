@@ -1,26 +1,39 @@
 module.exports = (io, socket, users) => {
-  socket.on("setUsername", (payload) => {
+  socket.on("setUsername", (newUserName) => {
     console.log(`Set Username Request
 Socket ID: ${socket.id}
-username: ${payload}
+username: ${newUserName}
     `);
 
+    let acceptRequest = true;
+
     if (socket.username !== undefined) {
-      console.log(`DENIED: socket.username already exists\n`);
+      console.log(`DENIED: Socket already has username\n`);
       socket.emit("alreadyName");
-    } else if (!users.has(payload)) {
-      socket.username = payload;
+      acceptRequest = false;
+    }
 
-      users.add(payload);
+    users.forEach((user) => {
+      if (user.socketUsername === newUserName) {
+        acceptRequest = false;
+        socket.emit("nameTaken");
+      }
+    });
 
+    if (acceptRequest) {
       console.log(
-        `ACCEPTED: \nSet ${socket.id} \nsocket.username to: ${payload}\n`
+        `ACCEPTED: \nSocket ID: ${socket.id} \nSet socket.username: ${newUserName}\n`
       );
 
+      socket.username = newUserName;
+
+      users.add({
+        socketID: socket.id,
+        socketUsername: newUserName,
+        currentRoom: null,
+      });
+
       socket.emit("nameSet", socket.username);
-    } else {
-      console.log(`DENIED: Name exists\n`);
-      socket.emit("nameTaken");
     }
   });
 };

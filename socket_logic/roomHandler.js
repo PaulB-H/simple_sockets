@@ -1,4 +1,4 @@
-module.exports = (io, socket, rooms) => {
+module.exports = (io, socket, users, rooms) => {
   socket.on("reqJoinRoom", (reqRoomNum, pass) => {
     console.log(`
 Join Room Request
@@ -6,6 +6,13 @@ Socket ID: ${socket.id}
 Room #: ${reqRoomNum}
 Password: ${pass === null ? "None" : "Included"}
     `);
+
+    let currentUserObj;
+    users.forEach((user) => {
+      if (user.socketID === socket.id) {
+        currentUserObj = user;
+      }
+    });
 
     if (socket.username === undefined) {
       console.log("DENIED: No username\n");
@@ -32,8 +39,10 @@ Password: ${pass === null ? "None" : "Included"}
               `ACCEPTED: \nsocket.username: ${socket.username} \nJoined room #: ${reqRoomNum} \n`
             );
             socket.join(`${reqRoomNum}`);
-            socket.currentRoom = reqRoomNum;
+
+            currentUserObj.currentRoom = reqRoomNum;
             room.users.push(socket.username);
+
             socket.emit("joinSuccess", room);
           }
         }
@@ -56,6 +65,13 @@ Socket ID: ${socket.id}
 Room #: ${reqRoomNum}
 Password: ${pass === null ? "None" : "Included"}
     `);
+
+    let currentUserObj;
+    users.forEach((user) => {
+      if (user.socketID === socket.id) {
+        currentUserObj = user;
+      }
+    });
 
     if (socket.username === undefined) {
       console.log("DENIED: No username\n");
@@ -82,12 +98,12 @@ Password: ${pass === null ? "None" : "Included"}
       // Join socket to room
       socket.join(`${reqRoomNum}`);
 
-      socket.currentRoom = reqRoomNum;
+      currentUserObj.currentRoom = reqRoomNum;
 
       let newRoom = {
         roomNum: reqRoomNum,
         pass: pass,
-        users: new Array(socket.username),
+        users: new Array(currentUserObj.socketUsername),
       };
 
       // Add room to server rooms set
