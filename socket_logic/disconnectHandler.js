@@ -1,10 +1,29 @@
-module.exports = (io, socket, users) => {
+module.exports = (io, socket, users, rooms) => {
   socket.on("disconnecting", () => {
     console.log(`Socket: ${socket.id} left\n`);
 
-    if (socket.username !== undefined) {
-      console.log(`Username was ${socket.username}`);
-      users.delete(socket.username);
+    let currentUserObj;
+    users.forEach((user) => {
+      if (user.socketID === socket.id) {
+        currentUserObj = user;
+      }
+    });
+
+    if (currentUserObj && currentUserObj.currentRoom !== null) {
+      rooms.forEach((room) => {
+        if (room.roomNum === currentUserObj.currentRoom) {
+          console.log("Found room user was in");
+          room.users.forEach((user, index) => {
+            if (user === currentUserObj.socketUsername) {
+              console.log("Found user, cutting out");
+              room.users.splice(index, 1);
+              io.to(room.roomNum).emit("updateUsers", room.users);
+            }
+          });
+        }
+      });
     }
+
+    users.delete(currentUserObj);
   });
 };
