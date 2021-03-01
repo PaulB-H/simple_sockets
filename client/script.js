@@ -175,6 +175,13 @@ socket.on("newMessage", (userName, message) => {
   );
 });
 
+socket.on("updateUsers", (usersArr) => {
+  chatRoomUsers.innerText = "";
+  usersArr.forEach((user) => {
+    chatRoomUsers.innerText += ` ${user} |`;
+  });
+});
+
 socket.on("room404", () => {
   console.log("Received room 404");
   joinCreateError.classList.contains("d-none") &&
