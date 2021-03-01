@@ -1,3 +1,5 @@
+const validator = require("validator");
+
 module.exports = (io, socket, users, rooms) => {
   socket.on("reqJoinRoom", (reqRoomNum, pass) => {
     console.log(`
