@@ -1,16 +1,21 @@
 <h3>Simple Socket Project</h3>
 
 <p>Socket.io attached to an express server</p>
+<sup>& My first experience with Socket.io!</sup>
 
 <hr />
 
-<h4>Currently</h4>
-<p>The server will log the socket ID of any connecting or disconnecting socket</p>
+<h4>Functionality:</h4>
+<p>Set a username</p>
+<p>Enter a room number</p>
+<p> Enter password <sup>(Optional)</sup></p>
+<p>Click Join or Create</p>
+<p>Chat!</p>
 
 <hr />
 
-<h4>Working on</h4> 
-<p>Allowing users to set a name, then pick to join or create a room</p>
+<h4>Working on:</h4> 
+<p>Admin control over rooms</p>
 
 <hr />
 
@@ -22,4 +27,4 @@
 <hr />
 
 <strike><p><a href="#" target="">Live site</a></p></strike>
-<sup>Will enable site when rooms are created.</sup>
+<sup>Almost ready, just need to setup input message sanitization </sup>
