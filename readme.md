@@ -26,5 +26,4 @@
 
 <hr />
 
-<strike><p><a href="#" target="">Live site</a></p></strike>
-<sup>Almost ready, just need to setup input message sanitization </sup>
+<p><a href="https://simple-sockets.herokuapp.com/" target="">Live site</a></p>
