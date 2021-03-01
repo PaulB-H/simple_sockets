@@ -119,6 +119,15 @@ const reqJoinRoom = () => {
   socket.emit("reqJoinRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
+socket.on("joinSuccess", (room) => {
+  console.log(room);
+  hideMainSections();
+  chatRoomUI.classList.remove("d-none");
+  room.users.forEach((user) => {
+    chatRoomUsers.innerText += ` ${user} |`;
+  });
+});
+
 const reqCreateRoom = () => {
   const roomNum = joinCreateInputNum.value;
   const roomPass = joinCreateInputPass.value;
