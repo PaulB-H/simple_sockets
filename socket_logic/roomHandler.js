@@ -84,7 +84,15 @@ Password: ${pass === null ? "None" : "Included"}
       users: [socket],
     });
 
+    const currentUsersArr = [];
+    rooms.forEach((item) => {
+      if (item.roomNum === reqRoomNum) {
+        item.users.forEach((socket) => currentUsersArr.push(socket.username));
+      }
+    });
+    console.log(currentUsersArr);
+
     // Tell socket room was created
-    socket.emit("roomCreated", reqRoomNum);
+    socket.emit("roomCreated", reqRoomNum, currentUsersArr);
   });
 };
