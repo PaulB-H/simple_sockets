@@ -80,12 +80,11 @@ socket.on("nameTaken", () => {
   setNameError.classList.contains("d-none") &&
     setNameError.classList.remove("d-none");
 
-  window.setTimeout(() => {
-    setNameError.classList.add("d-none");
-    setNameError.innerText = "";
-  }, 3000);
+  clearErrorTimeout();
 
   setNameError.innerText = "Error: Name taken";
+
+  startHideErrorTimeout();
 });
 
 socket.on("alreadyName", () => {
@@ -166,6 +165,15 @@ const sendMessage = () => {
   const message = chatRoomMsgInput.value;
   socket.emit("sendMessage", message);
 };
+
+socket.on("newMessage", (userName, message) => {
+  chatRoomMessages.insertAdjacentHTML(
+    "afterbegin",
+    `
+    ${userName}: <p>${message}</p>
+  `
+  );
+});
 
 socket.on("room404", () => {
   console.log("Received room 404");
