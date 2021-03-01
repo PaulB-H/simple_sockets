@@ -164,6 +164,7 @@ socket.on("roomCreated", (newRoom) => {
 const sendMessage = () => {
   const message = chatRoomMsgInput.value;
   socket.emit("sendMessage", message);
+  chatRoomMsgInput.value = "";
 };
 
 socket.on("newMessage", (userName, message) => {
