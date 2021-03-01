@@ -140,12 +140,14 @@ const reqCreateRoom = () => {
   socket.emit("reqCreateRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
-socket.on("roomCreated", (roomNum, currentUsersArr) => {
-  console.log(`Room # ${roomNum} was created`);
+socket.on("roomCreated", (newRoom) => {
+  console.log(`Room # ${newRoom.roomNum} was created`);
+
   hideMainSections();
-  chatRoomNum.innerText = roomNum;
-  currentUsersArr.forEach((username) => {
-    chatRoomUsers.innerText += `${username} |`;
+  chatRoomNum.innerText = newRoom.roomNum;
+
+  newRoom.users.forEach((user) => {
+    chatRoomUsers.innerText += `${user} |`;
   });
 
   chatRoomUI.classList.remove("d-none");
