@@ -170,7 +170,7 @@ socket.on("newMessage", (userName, message) => {
   chatRoomMessages.insertAdjacentHTML(
     "afterbegin",
     `
-    ${userName}: <p>${message}</p>
+    <p style="margin: 4px;"><strong>${userName}</strong>:<br />${message}</p>
   `
   );
 });
