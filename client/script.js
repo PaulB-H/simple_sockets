@@ -133,6 +133,14 @@ socket.on("passNotMatch", () => {
   startHideErrorTimeout();
 });
 
+socket.on("roomRequiresPass", () => {
+  joinCreateError.classList.remove("d-none");
+
+  clearErrorTimeout();
+  joinCreateError.innerText = "Error: Room requires password";
+  startHideErrorTimeout();
+});
+
 const reqCreateRoom = () => {
   const roomNum = joinCreateInputNum.value;
   const roomPass = joinCreateInputPass.value;
