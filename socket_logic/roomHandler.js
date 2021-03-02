@@ -66,6 +66,9 @@ Password: ${pass === null ? "None" : "Included"}
         console.log("DENIED: Room does not exist\n");
         socket.emit("room404");
       }
+    } else {
+      console.log("DENIED: Room does not exist\n");
+      socket.emit("room404");
     }
   });
   // END reqJoinRoom
