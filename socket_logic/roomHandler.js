@@ -1,4 +1,5 @@
 const validator = require("validator");
+const bcrypt = require("bcrypt");
 
 module.exports = (io, socket, users, rooms) => {
   // START reqJoinRoom
@@ -106,7 +107,9 @@ Password: ${pass === null ? "None" : "Included"}
 
       let newRoom = {
         roomNum: reqRoomNum,
-        pass: pass,
+        pass: bcrypt.hash(pass, 10, (err, hash) => {
+          return hash;
+        }),
         users: new Array(currentUserObj.socketUsername),
       };
 
