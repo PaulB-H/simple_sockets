@@ -15,11 +15,13 @@ const server = app.listen(port, () => {
 // Attach socket.io to the server
 const io = require("socket.io")(server);
 
+// Import socket handlers
 const registerUserNameHandlers = require("./socket_logic/userNameHandler.js");
 const registerRoomHandlers = require("./socket_logic/roomHandler.js");
 const registerMessageHandlers = require("./socket_logic/messageHandler.js");
 const registerDisconnectHandlers = require("./socket_logic/disconnectHandler.js");
 
+// Server side objects
 const users = new Set();
 const rooms = new Set();
 
