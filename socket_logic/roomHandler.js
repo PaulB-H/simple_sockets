@@ -35,10 +35,17 @@ Password: ${pass === null ? "None" : "Included"}
           console.log("Room exists\n");
           roomExists = true;
 
-          if (room.pass !== pass) {
-            console.log("Pass not match");
-            socket.emit("passNotMatch"); // Not handled yet
-            return;
+          if (room.pass !== null) {
+            if (pass === null || pass === undefined || pass === "") {
+              console.log("DENIED: No pass in request");
+              return socket.emit("roomRequiresPass");
+            }
+
+            if (!bcrypt.compareSync(pass, room.pass)) {
+              console.log("DENIED: Pass not match");
+              socket.emit("passNotMatch");
+              return;
+            }
           }
 
           console.log(
