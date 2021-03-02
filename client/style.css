@@ -32,7 +32,21 @@ hr {
 
 #chat-room-messages {
   word-wrap: break-word;
+  scrollbar-width: thin;
+  scrollbar-color: black white;
 }
+#chat-room-messages::-webkit-scrollbar {
+  width: 5px;
+}
+#chat-room-messages::-webkit-scrollbar-track {
+  background: white;
+}
+#chat-room-messages::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 6px;
+  /* border: 1px solid red; */
+}
+
 .chat-msg {
   margin: 5px;
 }
