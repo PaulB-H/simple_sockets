@@ -30,6 +30,10 @@ hr {
   max-width: 200px;
 }
 
+#chat-room-messages {
+  word-wrap: break-word;
+}
+
 #no-conn-overlay {
   z-index: 5;
   background-color: black;
