@@ -125,6 +125,14 @@ socket.on("joinSuccess", (roomNum) => {
   chatRoomNum.innerHTML = roomNum;
 });
 
+socket.on("passNotMatch", () => {
+  joinCreateError.classList.remove("d-none");
+
+  clearErrorTimeout();
+  joinCreateError.innerText = "Error: Wrong password";
+  startHideErrorTimeout();
+});
+
 const reqCreateRoom = () => {
   const roomNum = joinCreateInputNum.value;
   const roomPass = joinCreateInputPass.value;
