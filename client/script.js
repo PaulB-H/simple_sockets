@@ -173,6 +173,14 @@ socket.on("roomCreated", (roomNum) => {
   chatRoomUI.classList.remove("d-none");
 });
 
+socket.on("roomAlreadyExists", () => {
+  joinCreateError.classList.remove("d-none");
+
+  clearErrorTimeout();
+  joinCreateError.innerText = "Error: Room already exists";
+  startHideErrorTimeout();
+});
+
 const sendMessage = () => {
   const message = chatRoomMsgInput.value;
   socket.emit("sendMessage", message);
