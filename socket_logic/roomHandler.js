@@ -117,7 +117,7 @@ Password: ${pass === null ? "None" : "Included"}
       rooms.add(newRoom);
 
       // Tell socket room was created
-      socket.emit("roomCreated", newRoom);
+      socket.emit("roomCreated", newRoom.roomNum);
     }
   });
   // END reqCreateRoom

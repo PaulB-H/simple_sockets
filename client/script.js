@@ -154,15 +154,13 @@ const reqCreateRoom = () => {
   socket.emit("reqCreateRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
-socket.on("roomCreated", (newRoom) => {
-  console.log(`Room # ${newRoom.roomNum} was created`);
+socket.on("roomCreated", (roomNum) => {
+  console.log(`Room # ${roomNum} was created`);
 
   hideMainSections();
-  chatRoomNum.innerText = newRoom.roomNum;
+  chatRoomNum.innerText = roomNum;
 
-  newRoom.users.forEach((user) => {
-    chatRoomUsers.innerText += `${user} |`;
-  });
+  chatRoomUsers.innerText += `${socket.username} |`;
 
   chatRoomUI.classList.remove("d-none");
 });
