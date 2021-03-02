@@ -182,7 +182,7 @@ socket.on("newMessage", (userName, message) => {
     "afterbegin",
     `<div class="chat-msg">
       <p class="chat-msg-name">${userName}</p>
-      <p class="chat-msg-txt">${String(message)}</p>
+      <p class="chat-msg-txt">${message}</p>
     </div>`
   );
 });
