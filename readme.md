@@ -1,7 +1,7 @@
 <h3>Simple Socket Project</h3>
 
 <p>Socket.io attached to an express server</p>
-<sup>& My first experience with Socket.io!</sup>
+<sup>My first project with Socket.io</sup>
 
 <hr />
 
