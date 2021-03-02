@@ -21,6 +21,7 @@ module.exports = (io, socket, users, rooms) => {
               io.to(room.roomNum).emit("updateUsers", room.users);
             }
           });
+          console.log(room.users);
         }
       });
     }

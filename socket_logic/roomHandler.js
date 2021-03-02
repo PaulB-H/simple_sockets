@@ -115,11 +115,15 @@ Password: ${pass === null ? "None" : "Included"}
 
       currentUserObj.currentRoom = reqRoomNum;
 
-      const hash = bcrypt.hashSync(pass, 10);
+      if (pass === null || pass === undefined || pass === "") {
+        pass = null;
+      } else {
+        pass = bcrypt.hashSync(pass, 10);
+      }
 
       let newRoom = {
         roomNum: reqRoomNum,
-        pass: hash,
+        pass: pass,
         users: new Array(currentUserObj.socketUsername),
       };
 
