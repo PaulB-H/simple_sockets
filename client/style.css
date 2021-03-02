@@ -33,6 +33,15 @@ hr {
 #chat-room-messages {
   word-wrap: break-word;
 }
+.chat-msg {
+  margin: 5px;
+}
+.chat-msg-name {
+  font-weight: bold;
+}
+.chat-msg-txt {
+  font-family: sans-serif;
+}
 
 #no-conn-overlay {
   z-index: 5;

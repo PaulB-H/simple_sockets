@@ -180,9 +180,9 @@ chatRoomMsgInput.addEventListener("keyup", (event) => {
 socket.on("newMessage", (userName, message) => {
   chatRoomMessages.insertAdjacentHTML(
     "afterbegin",
-    `<div style="margin: 10px">
-      <strong><p>${userName}</p></strong>
-      <p>${String(message)}</p>
+    `<div class="chat-msg">
+      <p class="chat-msg-name">${userName}</p>
+      <p class="chat-msg-txt">${String(message)}</p>
     </div>`
   );
 });
