@@ -19,12 +19,12 @@ Password: ${pass === null ? "None" : "Included"}
       }
     });
 
-    if (socket.username === undefined) {
+    if (currentUserObj.socketUsername === undefined) {
       console.log("DENIED: No username\n");
       return;
     }
 
-    // If there are rooms at all
+    // START rooms.size > 0
     if (rooms.size > 0) {
       let roomExists = false;
 
@@ -32,26 +32,25 @@ Password: ${pass === null ? "None" : "Included"}
         // Check for matching room num
         if (room.roomNum === reqRoomNum) {
           console.log("Room exists\n");
-
           roomExists = true;
 
-          if (room.pass !== null) {
-            // Compare room pw vs entered pw
-            // if match join user
-            // if not emit error
-          } else {
-            console.log(
-              `ACCEPTED: \nsocket.username: ${socket.username} \nJoined room #: ${reqRoomNum} \n`
-            );
-            socket.join(`${reqRoomNum}`);
-
-            currentUserObj.currentRoom = reqRoomNum;
-            room.users.push(socket.username);
-
-            socket.emit("joinSuccess", room);
-
-            io.to(room.roomNum).emit("updateUsers", room.users);
+          if (room.pass !== pass) {
+            console.log("Pass not match");
+            socket.emit("passNotMatch"); // Not handled yet
+            return;
           }
+
+          console.log(
+            `ACCEPTED: \nsocket.username: ${socket.username} \nJoined room #: ${reqRoomNum} \n`
+          );
+          socket.join(`${reqRoomNum}`);
+
+          currentUserObj.currentRoom = reqRoomNum;
+          room.users.push(socket.username);
+
+          socket.emit("joinSuccess", room);
+
+          io.to(room.roomNum).emit("updateUsers", room.users);
         }
       });
 
@@ -59,10 +58,6 @@ Password: ${pass === null ? "None" : "Included"}
         console.log("DENIED: Room does not exist\n");
         socket.emit("room404");
       }
-    } else {
-      // rooms.size is <= 0
-      console.log("DENIED: No rooms exist\n");
-      socket.emit("room404");
     }
   });
   // END reqJoinRoom
