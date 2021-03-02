@@ -1,6 +1,7 @@
 const validator = require("validator");
 
 module.exports = (io, socket, users, rooms) => {
+  // START reqJoinRoom
   socket.on("reqJoinRoom", (reqRoomNum, pass) => {
     console.log(`
 Join Room Request
@@ -64,7 +65,9 @@ Password: ${pass === null ? "None" : "Included"}
       socket.emit("room404");
     }
   });
+  // END reqJoinRoom
 
+  // START reqCreateRoom
   socket.on("reqCreateRoom", (reqRoomNum, pass) => {
     console.log(`Room Creation Request
 Socket ID: ${socket.id}
@@ -119,4 +122,5 @@ Password: ${pass === null ? "None" : "Included"}
       socket.emit("roomCreated", newRoom);
     }
   });
+  // END reqCreateRoom
 };

@@ -1,6 +1,7 @@
 const validator = require("validator");
 
 module.exports = (io, socket, users) => {
+  // START setUserName
   socket.on("setUsername", (newUserName) => {
     console.log(`Set Username Request
 Socket ID: ${socket.id}
@@ -40,4 +41,5 @@ username: ${newUserName}
       socket.emit("nameSet", socket.username);
     }
   });
+  // END setUserName
 };

@@ -1,6 +1,7 @@
 const validator = require("validator");
 
 module.exports = (io, socket, users) => {
+  // START sendMessage
   socket.on("sendMessage", (message) => {
     let currentUserObj;
     users.forEach((user) => {
@@ -25,4 +26,5 @@ Message: ${message}
       message
     );
   });
+  // END sendMessage
 };

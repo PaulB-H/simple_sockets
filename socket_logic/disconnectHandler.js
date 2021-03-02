@@ -1,4 +1,5 @@
 module.exports = (io, socket, users, rooms) => {
+  // START disconnecting
   socket.on("disconnecting", () => {
     console.log(`Socket: ${socket.id} left\n`);
 
@@ -26,4 +27,5 @@ module.exports = (io, socket, users, rooms) => {
 
     users.delete(currentUserObj);
   });
+  // END disconnecting
 };
