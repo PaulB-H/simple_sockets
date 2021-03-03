@@ -91,6 +91,18 @@ socket.on("alreadyName", () => {
   console.log("That already is my name...");
 });
 
+socket.on("userNameEmpty", () => {
+  console.log("DENIED: Sent request without username");
+
+  setNameError.classList.remove("d-none");
+
+  clearErrorTimeout();
+
+  setNameError.innerText = "Error: Please enter a username";
+
+  startHideErrorTimeout();
+});
+
 const reqJoinRoom = () => {
   const roomNum = joinCreateInputNum.value;
   const roomPass = joinCreateInputPass.value;
