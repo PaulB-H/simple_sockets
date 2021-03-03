@@ -209,14 +209,8 @@ const sendMessage = () => {
   chatRoomMsgInput.value = "";
 };
 chatRoomMsgInput.addEventListener("keydown", (event) => {
-  // Number 13 is the "Enter" key on the keyboard
-  if (
-    event.key === 13 ||
-    event.key === 229 || // Key for mobile keyboard enter
-    event.key === "Enter" ||
-    event.key === "numpadEnter"
-  ) {
-    event.preventDefault();
+  event.preventDefault();
+  if (event.key === "Enter") {
     sendMessage();
   }
 });
