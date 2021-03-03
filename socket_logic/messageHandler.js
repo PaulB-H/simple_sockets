@@ -16,7 +16,6 @@ module.exports = (io, socket, users) => {
 Socket ID: ${currentUserObj.socketID}
 Socket Username: ${currentUserObj.socketUsername}
 Room #: ${currentUserObj.currentRoom}
-Message: ${message}
     `);
 
     io.to(currentUserObj.currentRoom).emit(
