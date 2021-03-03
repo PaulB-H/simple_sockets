@@ -243,6 +243,13 @@ socket.on("userJoined", (joinedUsername) => {
   );
 });
 
+socket.on("userLeft", (leftUsername) => {
+  chatRoomMessages.insertAdjacentHTML(
+    "afterbegin",
+    `<p class="user-left-chat" style="margin: 5px; font-size: 1.2em">User: "${leftUsername}" has left</p>`
+  );
+});
+
 socket.on("room404", () => {
   console.log("Received room 404");
   joinCreateError.classList.contains("d-none") &&
