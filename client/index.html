@@ -115,13 +115,16 @@
         <div id="chat-room-messages"></div>
 
         Message:
-        <input
+        <textarea
           id="chat-room-msg-input"
+          class="txta"
           type="test"
           name="Message text"
           value=""
           placeholder="Enter message"
-        />
+          autocomplete="off"
+        ></textarea>
+
         <button type="button" name="button" onclick="sendMessage()">
           Send Message
         </button>
@@ -144,6 +147,7 @@
       ></script>
       <!-- Local Script -->
       <script src="./script.js"></script>
+      <script src="./resizeTextarea.js"></script>
     </div>
     <!-- END Scriptbox -->
   </body>
