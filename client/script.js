@@ -223,7 +223,7 @@ socket.on("newMessage", (userName, message) => {
   chatRoomMessages.insertAdjacentHTML(
     "afterbegin",
     `<div class="chat-msg">
-      <p class="chat-msg-name">${userName}</p>
+      <p class="chat-msg-name">${userName}:</p>
       <p class="chat-msg-txt">${message}</p>
     </div>`
   );
@@ -234,6 +234,13 @@ socket.on("updateUsers", (usersArr) => {
   usersArr.forEach((user) => {
     chatRoomUsers.innerText += ` ${user} |`;
   });
+});
+
+socket.on("userJoined", (joinedUsername) => {
+  chatRoomMessages.insertAdjacentHTML(
+    "afterbegin",
+    `<p class="user-left-chat" style="margin: 5px; font-size: 1.2em">User: "${joinedUsername}" has joined</p>`
+  );
 });
 
 socket.on("room404", () => {
