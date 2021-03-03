@@ -12,6 +12,16 @@ username: ${newUserName}
 
     let acceptRequest = true;
 
+    if (
+      newUserName === "" ||
+      newUserName === null ||
+      newUserName === undefined
+    ) {
+      console.log(`DENIED: Request contains no username\n`);
+      socket.emit("userNameEmpty");
+      acceptRequest = false;
+    }
+
     if (socket.username !== undefined) {
       console.log(`DENIED: Socket already has username\n`);
       socket.emit("alreadyName");
