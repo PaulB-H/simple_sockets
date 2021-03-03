@@ -208,7 +208,7 @@ const sendMessage = () => {
   socket.emit("sendMessage", message);
   chatRoomMsgInput.value = "";
 };
-chatRoomMsgInput.addEventListener("keyup", (event) => {
+chatRoomMsgInput.addEventListener("keydown", (event) => {
   // Number 13 is the "Enter" key on the keyboard
   if (
     event.key === 13 ||
@@ -216,6 +216,7 @@ chatRoomMsgInput.addEventListener("keyup", (event) => {
     event.key === "Enter" ||
     event.key === "numpadEnter"
   ) {
+    event.preventDefault();
     sendMessage();
   }
 });
