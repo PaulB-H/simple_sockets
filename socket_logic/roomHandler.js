@@ -4,14 +4,16 @@ const bcrypt = require("bcrypt");
 module.exports = (io, socket, users, rooms) => {
   // START reqJoinRoom
   socket.on("reqJoinRoom", (reqRoomNum, pass) => {
+    // Sanitize user input with validator
+    reqRoomNum = validator.escape(reqRoomNum);
+    reqRoomNum = validator.escape(pass);
+
     console.log(`
 Join Room Request
 Socket ID: ${socket.id}
 Room #: ${reqRoomNum}
 Password: ${pass === null ? "None" : "Included"}
     `);
-
-    reqRoomNum = validator.escape(reqRoomNum);
 
     let currentUserObj;
     users.forEach((user) => {
@@ -75,8 +77,12 @@ Password: ${pass === null ? "None" : "Included"}
 
   // START reqCreateRoom
   socket.on("reqCreateRoom", (reqRoomNum, pass) => {
+    // Sanitize user input with validator
+    reqRoomNum = validator.escape(reqRoomNum);
+    reqRoomNum = validator.escape(pass);
+
     console.log(`Room Creation Request
-Socket ID: ${socket.id}
+                  Socket ID: ${socket.id}
 Room #: ${reqRoomNum}
 Password: ${pass === null ? "None" : "Included"}
     `);
