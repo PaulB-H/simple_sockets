@@ -5,8 +5,12 @@ module.exports = (io, socket, users, rooms) => {
   // START reqJoinRoom
   socket.on("reqJoinRoom", (reqRoomNum, pass) => {
     // Sanitize user input with validator
-    reqRoomNum = validator.escape(reqRoomNum);
-    pass = validator.escape(pass);
+    if (reqRoomNum !== null && reqRoomNum !== undefined && reqRoomNum !== "") {
+      reqRoomNum = validator.escape(reqRoomNum);
+    }
+    if (pass !== null && pass !== undefined && pass !== "") {
+      pass = validator.escape(pass);
+    }
 
     console.log(`
 Join Room Request
@@ -78,11 +82,15 @@ Password: ${pass === null ? "None" : "Included"}
   // START reqCreateRoom
   socket.on("reqCreateRoom", (reqRoomNum, pass) => {
     // Sanitize user input with validator
-    reqRoomNum = validator.escape(reqRoomNum);
-    pass = validator.escape(pass);
+    if (reqRoomNum !== null && reqRoomNum !== undefined && reqRoomNum !== "") {
+      reqRoomNum = validator.escape(reqRoomNum);
+    }
+    if (pass !== null && pass !== undefined && pass !== "") {
+      pass = validator.escape(pass);
+    }
 
     console.log(`Room Creation Request
-                  Socket ID: ${socket.id}
+Socket ID: ${socket.id}
 Room #: ${reqRoomNum}
 Password: ${pass === null ? "None" : "Included"}
     `);
