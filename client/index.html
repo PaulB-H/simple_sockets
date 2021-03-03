@@ -18,8 +18,41 @@
   <body>
     <!-- Content -->
     <div id="content">
+      <!-- Welcome UI -->
+      <div id="welcome-ui" class="main-section d-none">
+        <h3>Simple Sockets</h3>
+        <p>
+          Welcome to simple-sockets. This is my first time working with
+          Socket.io, and has quickly become one of my favorite projects. This is
+          my MVP (minimum-viable-product) of a chat app.
+        </p>
+        <hr />
+        <h3>How to:</h3>
+        <p>
+          Set a username, then join or create a room. Passwords are saved hashed
+          in a server side room object
+        </p>
+
+        <p>
+          Usernames are unique across the app, and are freed for someone else
+          when you disconnect.
+        </p>
+
+        <p>
+          Connections and messages are not persistent. If you refresh or loose
+          connection, you will need to set a username again.
+        </p>
+
+        <p>Rooms are currently persistent until server reset.</p>
+
+        <button type="button" name="button" onclick="showSetUsername()">
+          Enter
+        </button>
+      </div>
+      <!-- END Welcome UI -->
+
       <!-- Set Name UI -->
-      <div id="set-name-ui">
+      <div id="set-name-ui" class="main-section">
         <h3>Set your name</h3>
         <div id="set-name-error" class="d-none"></div>
         <input
@@ -36,7 +69,7 @@
       <!-- END Set Name UI -->
 
       <!-- Join or Create Room UI -->
-      <div id="join-create-ui" class="d-none">
+      <div id="join-create-ui" class="main-section d-none">
         <h3>Join or Create Room</h3>
 
         <hr />
@@ -71,11 +104,7 @@
       <!-- END Join or Create Room UI -->
 
       <!-- Chat Room UI -->
-      <div
-        id="chat-room-ui"
-        class="d-none"
-        style="display: flex; flex-direction: column"
-      >
+      <div id="chat-room-ui" class="main-section d-none">
         <h3>Chat Room # <span id="chat-room-num"></span></h3>
 
         Online:
@@ -83,17 +112,7 @@
 
         <div id="chat-room-error" class="d-none"></div>
 
-        <div
-          id="chat-room-messages"
-          style="
-            display: flex;
-            flex-direction: column-reverse;
-            height: 50vh;
-            min-width: 100px;
-            border: 1px solid black;
-            overflow-y: scroll;
-          "
-        ></div>
+        <div id="chat-room-messages"></div>
 
         Message:
         <input
