@@ -81,6 +81,7 @@ Password: ${pass === null ? "None" : "Included"}
           socket.emit("joinSuccess", room.roomNum);
 
           io.to(room.roomNum).emit("updateUsers", room.users);
+          io.to(room.roomNum).emit("userJoined", currentUserObj.socketUsername);
         }
       });
 
