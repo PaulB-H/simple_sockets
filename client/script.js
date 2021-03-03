@@ -219,6 +219,15 @@ chatRoomMsgInput.addEventListener("keyup", (event) => {
   }
 });
 
+socket.on("noMessageFound", () => {
+  console.log("No message found in request");
+  chatRoomError.classList.remove("d-none");
+
+  clearErrorTimeout();
+  chatRoomError.innerText = "Error: No message entered!";
+  startHideErrorTimeout();
+});
+
 socket.on("newMessage", (userName, message) => {
   chatRoomMessages.insertAdjacentHTML(
     "afterbegin",
