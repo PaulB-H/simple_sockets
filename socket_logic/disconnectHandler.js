@@ -19,6 +19,10 @@ module.exports = (io, socket, users, rooms) => {
               console.log("Found user, cutting out");
               room.users.splice(index, 1);
               io.to(room.roomNum).emit("updateUsers", room.users);
+              io.to(room.roomNum).emit(
+                "userLeft",
+                currentUserObj.socketUsername
+              );
             }
           });
           console.log(room.users);
