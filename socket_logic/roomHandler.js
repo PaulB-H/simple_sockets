@@ -54,6 +54,22 @@ Password: ${pass === null ? "None" : "Included"}
             }
           }
 
+          // Emit error IF room does NOT require password
+          //   && user sent password with request
+          // I could just accept these requests and join user,
+          //   and also notify them pass was not required
+          // However this way is still easy and clear
+          if (
+            room.pass === null &&
+            pass !== null &&
+            pass !== undefined &&
+            pass !== ""
+          ) {
+            console.log("DENIED: Pass not needed");
+            socket.emit("passNotNeeded");
+            return;
+          }
+
           console.log(
             `ACCEPTED: \nsocket.username: ${socket.username} \nJoined room #: ${reqRoomNum} \n`
           );
