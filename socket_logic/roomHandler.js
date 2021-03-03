@@ -6,7 +6,7 @@ module.exports = (io, socket, users, rooms) => {
   socket.on("reqJoinRoom", (reqRoomNum, pass) => {
     // Sanitize user input with validator
     reqRoomNum = validator.escape(reqRoomNum);
-    reqRoomNum = validator.escape(pass);
+    pass = validator.escape(pass);
 
     console.log(`
 Join Room Request
@@ -79,7 +79,7 @@ Password: ${pass === null ? "None" : "Included"}
   socket.on("reqCreateRoom", (reqRoomNum, pass) => {
     // Sanitize user input with validator
     reqRoomNum = validator.escape(reqRoomNum);
-    reqRoomNum = validator.escape(pass);
+    pass = validator.escape(pass);
 
     console.log(`Room Creation Request
                   Socket ID: ${socket.id}
