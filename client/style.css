@@ -1,26 +1,36 @@
+/* CSS Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  margin: 10px;
-}
-h3 {
-  text-align: center;
-}
+
+/* Global Styles */
 input,
 button {
   padding: 3px;
   margin: 10px;
 }
+
 hr {
   margin: 15px;
 }
+/* END Global Styles */
 
 /* Helper Classes */
 .d-none {
   display: none !important;
+}
+
+/* SectionSpecific */
+#content {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 #set-name-ui,
