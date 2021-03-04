@@ -207,10 +207,22 @@ const sendMessage = () => {
   const message = chatRoomMsgInput.value;
   socket.emit("sendMessage", message);
   chatRoomMsgInput.value = "";
+
+  // With the "in" operator, we test whether the property exists (regardless of value), anywhere in window's prototype chain.
+  // if ("ontouchstart" in window) {
+  //   console.log("Touch enabled device");
+  // } else {
+  //   console.log("Non touch device");
+  // }
 };
 chatRoomMsgInput.addEventListener("keydown", (event) => {
-  event.preventDefault();
-  if (event.key === "Enter") {
+  let touchDevice = false;
+  if ("ontouchstart" in window) {
+    touchDevice = true;
+  }
+
+  if (!touchDevice && !event.shiftKey && event.key === "Enter") {
+    event.preventDefault();
     sendMessage();
   }
 });
