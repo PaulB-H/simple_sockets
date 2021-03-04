@@ -99,6 +99,7 @@ hr {
   margin: 10px;
   border-radius: 5px;
   border: 2px solid darkgray;
+  min-height: 36px;
 }
 
 .chat-msg {
