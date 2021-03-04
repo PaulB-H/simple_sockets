@@ -206,6 +206,7 @@ socket.on("roomAlreadyExists", () => {
 const sendMessage = () => {
   const message = chatRoomMsgInput.value.trim();
   socket.emit("sendMessage", message);
+  chatRoomMsgInput.style.height = "36px";
   chatRoomMsgInput.value = "";
 
   // With the "in" operator, we test whether the property exists (regardless of value), anywhere in window's prototype chain.
