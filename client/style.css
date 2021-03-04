@@ -109,6 +109,7 @@ hr {
 }
 .chat-msg-txt {
   font-family: sans-serif;
+  white-space: pre-wrap;
 }
 /* END Chat Room */
 
