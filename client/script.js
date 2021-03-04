@@ -204,7 +204,7 @@ socket.on("roomAlreadyExists", () => {
 });
 
 const sendMessage = () => {
-  const message = chatRoomMsgInput.value;
+  const message = chatRoomMsgInput.value.trim();
   socket.emit("sendMessage", message);
   chatRoomMsgInput.value = "";
 

@@ -6,11 +6,9 @@ module.exports = (io, socket, users) => {
     if (message === "" || typeof message !== "string") {
       socket.emit("noMessageFound");
       return;
-    } else if (!message.trim()) {
-      socket.emit("noMessageFound");
-      return;
     } else {
       message = validator.escape(message);
+      message.trim();
     }
 
     let currentUserObj;
