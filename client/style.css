@@ -7,8 +7,15 @@
 body {
   background-color: #e5edff;
 }
-
+/* ********** */
 /* Global Styles */
+/* ********** */
+
+/* Helper Classes */
+.d-none {
+  display: none !important;
+}
+
 input,
 button {
   padding: 5px;
@@ -20,26 +27,59 @@ button {
 hr {
   margin: 15px;
 }
-/* END Global Styles */
 
-/* Helper Classes */
-.d-none {
-  display: none !important;
-}
-
-/* Will apply to anything with error in the ID */
+/* Error Divs*/
 [id*="error"] {
   margin: 10px;
   background-color: yellow;
   padding: 5px;
 }
 
-/* Welcome, Set Name, Join/Create Room, Overlay */
-.main-section {
-  display: flex;
-  flex-direction: column;
+/* ********** */
+/* Scrollbar Settings */
+/* ********** */
+
+/* Firefox */
+#chat-room-messages,
+.txta {
+  scrollbar-width: thin;
+  scrollbar-color: black white;
+}
+/* Webkit */
+#chat-room-messages::-webkit-scrollbar,
+.txta::-webkit-scrollbar {
+  width: 5px;
+}
+#chat-room-messages::-webkit-scrollbar-track,
+.txta::-webkit-scrollbar-track {
+  background: white;
+}
+#chat-room-messages::-webkit-scrollbar-thumb,
+.txta::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 6px;
+}
+/* ********** */
+/* END Scrollbar Settings */
+/* ********** */
+
+/* Hide Num-Input Spinner */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
+/* ********** */
+/* END Global Styles */
+/* ********** */
+
+/* Wraps everything within body */
 #content {
   max-width: 600px;
   margin: auto;
@@ -51,6 +91,12 @@ hr {
   min-height: 100vh;
 }
 
+/* Welcome, Set Name, Join/Create Room, Overlay */
+.main-section {
+  display: flex;
+  flex-direction: column;
+}
+
 #set-name-ui,
 #join-create-ui {
   display: flex;
@@ -58,7 +104,15 @@ hr {
   max-width: 200px;
 }
 
+/* ********** */
 /* Chat Room */
+/* ********** */
+
+/* Note: ID #chat-room-msg-input is currently not in use
+for styling. Class .txta is set on the element, and
+used currently, due to how it was setup in the 
+textarea resizing script initially. */
+
 #chat-room-ui {
   width: 100%;
 }
@@ -73,31 +127,12 @@ hr {
   background-color: #fff;
 }
 
-/* Scrollbar Settings */
-
-/* Firefox */
-#chat-room-messages,
-#chat-room-msg-input {
-  scrollbar-width: thin;
-  scrollbar-color: black white;
-}
-/* Webkit */
-#chat-room-messages::-webkit-scrollbar,
-#chat-room-msg-input::-webkit-scrollbar {
-  width: 5px;
-}
-#chat-room-messages::-webkit-scrollbar-track,
-#chat-room-msg-input::-webkit-scrollbar-track {
-  background: white;
-}
-#chat-room-messages::-webkit-scrollbar-thumb,
-#chat-room-msg-input::-webkit-scrollbar-thumb {
-  background-color: black;
-  border-radius: 6px;
-}
-
-/* Class for resizeTextarea script */
-/* Attached to chat-ui message textarea */
+/* 
+  ID: #chat-room-msg-input on same textarea
+  Update script if changing .txta name below
+  .txta is currently applied to our shadow
+  DOM element for auto-resizing purposes
+*/
 .txta {
   font-family: sans-serif;
   overflow: hidden;
@@ -112,6 +147,7 @@ hr {
   resize: none;
 }
 
+/* Message wrapper, name, and text */
 .chat-msg {
   margin: 5px;
 }
@@ -122,8 +158,12 @@ hr {
   font-family: sans-serif;
   white-space: pre-wrap;
 }
-/* END Chat Room */
 
+/* ********** */
+/* END Chat Room */
+/* ********** */
+
+/* Overlay that appears on connection loss */
 #no-conn-overlay {
   z-index: 5;
   background-color: black;
@@ -135,16 +175,4 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* Hide Num-Input Spinner */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
 }
