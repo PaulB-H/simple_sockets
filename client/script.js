@@ -26,12 +26,20 @@ const chatRoomUsers = document.getElementById("chat-room-users");
 const chatRoomError = document.getElementById("chat-room-error");
 errorDivs.add(chatRoomError);
 const chatRoomMessages = document.getElementById("chat-room-messages");
+const msgInputAndSendWrapper = document.getElementById(
+  "msg-input-and-send-wrapper"
+);
 const chatRoomMsgInput = document.getElementById("chat-room-msg-input");
 
 const noConnOverlay = document.getElementById("no-conn-overlay");
 mainSections.add(noConnOverlay);
 
 let hideErrorTimeout;
+
+const scrollBottom = () => {
+  msgInputAndSendWrapper.scrollIntoView(false);
+  console.log("scrollhit");
+};
 
 const startHideErrorTimeout = () => {
   hideErrorTimeout = window.setTimeout(() => {

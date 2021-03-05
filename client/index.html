@@ -115,7 +115,10 @@
         <div id="chat-room-messages"></div>
 
         Message:
-        <div style="width: 100%; position: relative">
+        <div
+          id="msg-input-and-send-wrapper"
+          style="width: 100%; position: relative"
+        >
           <textarea
             id="chat-room-msg-input"
             class="txta"
@@ -123,6 +126,7 @@
             type="test"
             name="Message text"
             value=""
+            oninput="scrollBottom()"
             placeholder="Enter message"
             autocomplete="off"
           ></textarea>
