@@ -159,10 +159,11 @@ textarea resizing script initially. */
   resize: none;
 }
 #send-msg-btn {
+  width: 50%;
   bottom: 0;
   right: 3px;
   margin: 0;
-  padding: 3px 3px;
+  padding: 3px 10px;
   float: right;
 }
 
