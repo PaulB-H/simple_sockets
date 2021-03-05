@@ -208,6 +208,7 @@ const sendMessage = () => {
   socket.emit("sendMessage", message);
   chatRoomMsgInput.style.height = "36px";
   chatRoomMsgInput.value = "";
+  chatRoomMsgInput.value.focus();
 
   // With the "in" operator, we test whether the property exists (regardless of value), anywhere in window's prototype chain.
   // if ("ontouchstart" in window) {
