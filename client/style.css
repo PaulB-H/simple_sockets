@@ -10,8 +10,7 @@ body {
 
 /* Global Styles */
 input,
-button,
-textarea {
+button {
   padding: 5px;
   margin: 10px;
   border-radius: 5px;
