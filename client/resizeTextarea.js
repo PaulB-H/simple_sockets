@@ -45,7 +45,7 @@ for (let i of textareas) {
       i.style.resize = "none";
 
       // This removes scrollbars
-      i.style.overflow = "scroll";
+      i.style.overflowY = "scroll";
 
       // Every input/change, grab the content
       content = i.value;
