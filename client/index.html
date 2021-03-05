@@ -115,20 +115,26 @@
         <div id="chat-room-messages"></div>
 
         Message:
-        <textarea
-          id="chat-room-msg-input"
-          class="txta"
-          rows="1"
-          type="test"
-          name="Message text"
-          value=""
-          placeholder="Enter message"
-          autocomplete="off"
-        ></textarea>
-
-        <button type="button" name="button" onclick="sendMessage()">
-          Send Message
-        </button>
+        <div style="width: 100%; position: relative">
+          <textarea
+            id="chat-room-msg-input"
+            class="txta"
+            rows="1"
+            type="test"
+            name="Message text"
+            value=""
+            placeholder="Enter message"
+            autocomplete="off"
+          ></textarea>
+          <button
+            style="position: absolute; bottom: -1px; right: 3px"
+            type="button"
+            name="button"
+            onclick="sendMessage()"
+          >
+            Send >
+          </button>
+        </div>
       </div>
       <!-- END Chat Room UI -->
 
