@@ -72,18 +72,28 @@ hr {
   border: 2px solid darkgray;
   border-radius: 10px;
   overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: black white;
   background-color: #fff;
 }
-/* Webkit Scrollbar for #chat-room-messages */
-#chat-room-messages::-webkit-scrollbar {
+
+/* Scrollbar Settings */
+
+/* Firefox */
+#chat-room-messages,
+#chat-room-msg-input {
+  scrollbar-width: thin;
+  scrollbar-color: black white;
+}
+/* Webkit */
+#chat-room-messages::-webkit-scrollbar,
+#chat-room-msg-input::-webkit-scrollbar {
   width: 5px;
 }
-#chat-room-messages::-webkit-scrollbar-track {
+#chat-room-messages::-webkit-scrollbar-track,
+#chat-room-msg-input::-webkit-scrollbar-track {
   background: white;
 }
-#chat-room-messages::-webkit-scrollbar-thumb {
+#chat-room-messages::-webkit-scrollbar-thumb,
+#chat-room-msg-input::-webkit-scrollbar-thumb {
   background-color: black;
   border-radius: 6px;
 }
