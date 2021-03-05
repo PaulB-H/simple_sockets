@@ -30,8 +30,8 @@ hr {
 
 /* Error Divs*/
 [id*="error"] {
-  margin: 10px;
   background-color: yellow;
+  margin: 10px;
   padding: 5px;
 }
 
@@ -50,14 +50,14 @@ hr {
 .txta::-webkit-scrollbar {
   width: 5px;
 }
-#chat-room-messages::-webkit-scrollbar-track,
-.txta::-webkit-scrollbar-track {
-  background: white;
-}
 #chat-room-messages::-webkit-scrollbar-thumb,
 .txta::-webkit-scrollbar-thumb {
   background-color: black;
   border-radius: 6px;
+}
+#chat-room-messages::-webkit-scrollbar-track,
+.txta::-webkit-scrollbar-track {
+  background: white;
 }
 /* ********** */
 /* END Scrollbar Settings */
@@ -81,6 +81,7 @@ input[type="number"] {
 
 /* Wraps everything within body */
 #content {
+  min-height: 90vh;
   max-width: 600px;
   margin: auto;
   padding: 10px;
@@ -88,7 +89,6 @@ input[type="number"] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 /* Welcome, Set Name, Join/Create Room, Overlay */
@@ -99,9 +99,9 @@ input[type="number"] {
 
 #set-name-ui,
 #join-create-ui {
+  max-width: 200px;
   display: flex;
   flex-direction: column;
-  max-width: 200px;
 }
 
 /* ********** */
@@ -117,36 +117,15 @@ textarea resizing script initially. */
   width: 100%;
 }
 #chat-room-messages {
-  display: flex;
+  background-color: #fff;
   word-wrap: break-word;
-  flex-direction: column-reverse;
   height: 50vh;
   border: 2px solid darkgray;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column-reverse;
   overflow-y: scroll;
-  background-color: #fff;
 }
-
-/* 
-  ID: #chat-room-msg-input on same textarea
-  Update script if changing .txta name below
-  .txta is currently applied to our shadow
-  DOM element for auto-resizing purposes
-*/
-.txta {
-  font-family: sans-serif;
-  overflow: hidden;
-  line-height: 1.4;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 2px solid darkgray;
-  min-height: 36px;
-  width: 100%;
-  overflow-y: scroll;
-  max-height: 125px;
-  resize: none;
-}
-
 /* Message wrapper, name, and text */
 .chat-msg {
   margin: 5px;
@@ -157,6 +136,34 @@ textarea resizing script initially. */
 .chat-msg-txt {
   font-family: sans-serif;
   white-space: pre-wrap;
+}
+
+/* 
+  ID: #chat-room-msg-input on same textarea
+  Update script if changing .txta name below
+  .txta is currently applied to our shadow
+  DOM element for auto-resizing purposes
+*/
+.txta {
+  padding: 0 3px;
+  font-family: sans-serif;
+  line-height: 1.4;
+  font-size: 16px;
+  min-height: 36px;
+  width: 100%;
+  max-height: 125px;
+  border-radius: 5px;
+  border: 2px solid darkgray;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  resize: none;
+}
+#send-msg-btn {
+  bottom: 0;
+  right: 3px;
+  margin: 0;
+  padding: 3px 3px;
+  float: right;
 }
 
 /* ********** */
