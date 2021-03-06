@@ -90,12 +90,24 @@ Password: ${pass === null ? "None" : "Included"}
 
   // START reqCreateRoom
   socket.on("reqCreateRoom", (reqRoomNum, pass) => {
-    // Sanitize user input with validator
-    if (reqRoomNum !== null && reqRoomNum !== undefined && reqRoomNum !== "") {
+    if (!socket) return;
+    if (!socket.id) return;
+
+    if (typeof reqRoomNum === "string" && reqRoomNum !== "") {
       reqRoomNum = validator.escape(reqRoomNum);
+    } else {
+      // Did not receive reqRoomNum
+      // in correct structure
+      return;
     }
-    if (pass !== null && pass !== undefined && pass !== "") {
+
+    if (typeof pass === "string" && pass !== "") {
       pass = validator.escape(pass);
+    } else {
+      // User sent no pass OR
+      // Did not receive pass
+      // in correct structure
+      pass = null;
     }
 
     console.log(`Room Creation Request
