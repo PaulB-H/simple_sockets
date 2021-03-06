@@ -18,6 +18,13 @@ const joinCreateInputPass = document.getElementById("join-create-inputPass");
 const joinCreateError = document.getElementById("join-create-error");
 errorDivs.add(joinCreateError);
 
+// Room list
+const roomListUI = document.getElementById("room-list-ui");
+mainSections.add(roomListUI);
+const roomListUL = document.getElementById("room-list-ul");
+const roomListError = document.getElementById("room-list-error");
+errorDivs.add(roomListError);
+
 // Chat Room UI
 const chatRoomUI = document.getElementById("chat-room-ui");
 mainSections.add(chatRoomUI);
@@ -64,6 +71,17 @@ function hideMainSections() {
       elem.classList.add("d-none");
     }
   });
+}
+
+function showJoinCreateUI() {
+  hideMainSections();
+  joinCreateUI.classList.remove("d-none");
+}
+
+function showRoomList() {
+  console.log("Waty");
+  hideMainSections();
+  roomListUI.classList.remove("d-none");
 }
 
 socket.on("connected", () => {
