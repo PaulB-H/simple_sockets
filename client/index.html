@@ -74,6 +74,8 @@
 
         <hr />
 
+        <button onclick="showRoomList()">Show room list instead</button>
+
         <div id="join-create-error"></div>
         Room Number:
         <input
@@ -100,6 +102,29 @@
         <button type="button" name="button" onclick="reqCreateRoom()">
           Create Room
         </button>
+      </div>
+      <!-- END Join or Create Room UI -->
+
+      <!-- Room List UI -->
+      <div id="room-list-ui" class="main-section d-none">
+        <h3>Join or Create Room</h3>
+
+        <hr />
+
+        <div id="room-list-error"></div>
+
+        <p>Not functional yet</p>
+
+        <ul id="room-list-ul">
+          <li id="room-list-item">
+            <p>
+              Room #: ${roomNum} ${pass required?}
+              <span style="float: right">Join</span>
+            </p>
+          </li>
+        </ul>
+
+        <button onclick="showJoinCreateUI()">Join by number</button>
       </div>
       <!-- END Join or Create Room UI -->
 
