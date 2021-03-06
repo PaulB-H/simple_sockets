@@ -1,7 +1,11 @@
 module.exports = (io, socket, users, rooms) => {
   // START disconnecting
+
+  /*
+    This maybe should be changed to a "disconnected" event
+  */
   socket.on("disconnecting", () => {
-    console.log(`Socket: ${socket.id} left\n`);
+    console.log(`Socket: ${socket.id} is disconnecting\n`);
 
     let currentUserObj;
     users.forEach((user) => {
@@ -13,10 +17,11 @@ module.exports = (io, socket, users, rooms) => {
     if (currentUserObj && currentUserObj.currentRoom !== null) {
       rooms.forEach((room) => {
         if (room.roomNum === currentUserObj.currentRoom) {
-          console.log("Found room user was in");
+          // console.log("Found room user was in");
+
           room.users.forEach((user, index) => {
             if (user === currentUserObj.socketUsername) {
-              console.log("Found user, cutting out");
+              // console.log("Found user, removing");
               room.users.splice(index, 1);
               io.to(room.roomNum).emit("updateUsers", room.users);
               io.to(room.roomNum).emit(
@@ -25,7 +30,7 @@ module.exports = (io, socket, users, rooms) => {
               );
             }
           });
-          console.log(room.users);
+
           if (room.users.length === 0) rooms.delete(room);
         }
       });
