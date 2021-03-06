@@ -26,6 +26,7 @@ module.exports = (io, socket, users, rooms) => {
             }
           });
           console.log(room.users);
+          if (room.users.length === 0) rooms.delete(room);
         }
       });
     }
