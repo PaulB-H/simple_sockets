@@ -1,26 +1,21 @@
 const validator = require("validator");
 
 module.exports = (io, socket, users) => {
-  // START setUserName
+  // START setUserNames
   socket.on("setUsername", (newUserName) => {
+    if (typeof newUserName !== "string" || newUserName === "") {
+      console.log(`DENIED: Request contains no username\n`);
+      socket.emit("userNameEmpty");
+      return;
+    }
+
+    newUserName = validator.escape(newUserName);
     console.log(`Set Username Request
 Socket ID: ${socket.id}
 username: ${newUserName}
     `);
 
-    newUserName = validator.escape(newUserName);
-
     let acceptRequest = true;
-
-    if (
-      newUserName === "" ||
-      newUserName === null ||
-      newUserName === undefined
-    ) {
-      console.log(`DENIED: Request contains no username\n`);
-      socket.emit("userNameEmpty");
-      acceptRequest = false;
-    }
 
     if (socket.username !== undefined) {
       console.log(`DENIED: Socket already has username\n`);
