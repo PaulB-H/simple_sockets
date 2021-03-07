@@ -1,7 +1,7 @@
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 
-module.exports = (io, socket, users, rooms) => {
+module.exports = (io, socket, users, rooms, roomList) => {
   // START reqJoinRoom
   socket.on("reqJoinRoom", (reqRoomNum, pass) => {
     // Sanitize user input with validator
@@ -89,7 +89,7 @@ Password: ${pass === null ? "None" : "Included"}
   // END reqJoinRoom
 
   // START reqCreateRoom
-  socket.on("reqCreateRoom", (reqRoomNum, pass) => {
+  socket.on("reqCreateRoom", async (reqRoomNum, pass) => {
     if (!socket) return;
     if (!socket.id) return;
 
@@ -172,13 +172,16 @@ Password: ${pass === null ? "None" : "Included"}
         currentUserObj.socketUsername
       );
 
-      let roomList = new Set();
-      rooms.forEach((room) => {
-        roomList.add(room.roomNum);
-      });
+      let roomListItem = {
+        roomNum: newRoom.roomNum,
+        passReq: newRoom.pass ? "Yes" : "No",
+      };
 
-      // Emit to all room added, update your room list
-      io.emit("newRoom", roomList);
+      roomList.add(roomListItem);
+
+      // Need to turn roomList into an array here, socket.io
+      // not sending set obj properly
+      io.emit("updateRoomList", [...roomList]);
     }
   });
   // END reqCreateRoom
