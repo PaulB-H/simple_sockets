@@ -325,3 +325,15 @@ socket.on("updateRoomList", (roomList) => {
     );
   });
 });
+
+// Not the right spot for this fn, but relates to updateRoomList...
+const joinRoomList = (roomNum, passReq) => {
+  console.log(roomNum, passReq);
+  if (passReq) {
+    // Open overlay, ask for password to room
+    // Send join request with password
+  } else {
+    // Send join request with null password
+    socket.emit("reqJoinRoom", roomNum.toString(), null);
+  }
+};
