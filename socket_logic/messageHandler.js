@@ -3,7 +3,10 @@ const validator = require("validator");
 module.exports = (io, socket, users) => {
   // START sendMessage
   socket.on("sendMessage", (message) => {
-    let currentUserObj;
+    console.log(`Message Request from\n${socket.id}`);
+    console.log(users);
+
+    let currentUserObj = null;
 
     if (!socket) return;
     if (!socket.id) return;
@@ -12,11 +15,18 @@ module.exports = (io, socket, users) => {
     users.forEach((user) => {
       if (user.socketID === socket.id) {
         currentUserObj = user;
-      } else {
-        console.log("Auth Error");
-        return;
       }
     });
+
+    if (!currentUserObj) {
+      console.log("Auth Error");
+      return;
+    }
+
+    if (!currentUserObj.currentRoom) {
+      // User not in a room
+      return;
+    }
 
     // Check for empty string or not string
     if (message === "" || typeof message !== "string") {
@@ -32,9 +42,6 @@ module.exports = (io, socket, users) => {
     // Socket Username: ${currentUserObj.socketUsername}
     // Room #: ${currentUserObj.currentRoom}
     //     `);
-
-    if (!currentUserObj) return;
-    if (!currentUserObj.currentRoom) return;
 
     io.to(currentUserObj.currentRoom).emit(
       "newMessage",
