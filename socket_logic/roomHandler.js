@@ -174,7 +174,7 @@ Password: ${pass === null ? "None" : "Included"}
 
       let roomListItem = {
         roomNum: newRoom.roomNum,
-        passReq: newRoom.pass ? "Yes" : "No",
+        passReq: newRoom.pass ? true : false,
       };
 
       roomList.add(roomListItem);
