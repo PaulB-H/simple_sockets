@@ -46,7 +46,11 @@ module.exports = (io, socket, users, rooms, roomList) => {
       });
     }
 
-    users.delete(currentUserObj);
+    users.forEach((user) => {
+      if (user.socketID === socket.id) {
+        users.delete(user);
+      }
+    });
   });
   // END disconnecting
 };
