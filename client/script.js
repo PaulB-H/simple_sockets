@@ -208,15 +208,14 @@ const reqCreateRoom = () => {
   socket.emit("reqCreateRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
-socket.on("roomCreated", (roomNum, users) => {
+socket.on("roomCreated", (roomNum, createdBy) => {
   console.log(`Room # ${roomNum} was created`);
 
   hideMainSections();
+
   chatRoomNum.innerText = roomNum;
 
-  users.forEach((user) => {
-    chatRoomUsers.innerText += `${user} |`;
-  });
+  chatRoomUsers.innerText += `Creator: ${createdBy} |`;
 
   chatRoomUI.classList.remove("d-none");
 });

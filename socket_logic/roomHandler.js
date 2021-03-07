@@ -166,7 +166,19 @@ Password: ${pass === null ? "None" : "Included"}
       rooms.add(newRoom);
 
       // Tell socket room was created
-      socket.emit("roomCreated", newRoom.roomNum, newRoom.users);
+      socket.emit(
+        "roomCreated",
+        newRoom.roomNum,
+        currentUserObj.socketUsername
+      );
+
+      let roomList = new Set();
+      rooms.forEach((room) => {
+        roomList.add(room.roomNum);
+      });
+
+      // Emit to all room added, update your room list
+      io.emit("newRoom", roomList);
     }
   });
   // END reqCreateRoom
