@@ -24,6 +24,7 @@ const registerDisconnectHandlers = require("./socket_logic/disconnectHandler.js"
 // Server side objects
 const users = new Set();
 const rooms = new Set();
+const roomList = new Set();
 
 const onConnection = (socket) => {
   console.log(`Socket: ${socket.id} connected \n`);
@@ -33,7 +34,7 @@ const onConnection = (socket) => {
   registerUserNameHandlers(io, socket, users);
 
   // Room Handlers
-  registerRoomHandlers(io, socket, users, rooms);
+  registerRoomHandlers(io, socket, users, rooms, roomList);
 
   // Message Handlers
   registerMessageHandlers(io, socket, users);
