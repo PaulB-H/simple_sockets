@@ -29,6 +29,7 @@ const roomList = new Set();
 const onConnection = (socket) => {
   console.log(`Socket: ${socket.id} connected \n`);
   socket.emit("connected");
+  io.emit("updateRoomList", [...roomList]);
 
   // User Name Handlers
   registerUserNameHandlers(io, socket, users);
