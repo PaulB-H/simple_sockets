@@ -308,14 +308,24 @@ socket.on("disconnect", () => {
 socket.on("updateRoomList", (roomList) => {
   roomListUL.innerHTML = "";
 
-  roomList.forEach((room) => {
+  if (roomList.length > 0) {
+    roomList.forEach((room) => {
+      roomListUL.insertAdjacentHTML(
+        "afterbegin",
+        `
+        <li class="room-list-li"><p>Room: <strong>${room.roomNum}</strong> | Password: <strong>${room.passReq}</strong></p><button onclick="joinRoomList(${room.roomNum}, ${room.passReq})">Join room <strong>${room.roomNum}</strong></button></li>
+      `
+      );
+    });
+  } else {
+    console.log("Else");
     roomListUL.insertAdjacentHTML(
       "afterbegin",
       `
-        <li class="room-list-li"><p>Room: <strong>${room.roomNum}</strong> | Password: <strong>${room.passReq}</strong></p><button onclick="joinRoomList(${room.roomNum}, ${room.passReq})">Join room <strong>${room.roomNum}</strong></button></li>
+        <li class="room-list-li"><p>No rooms found!</p></li>
       `
     );
-  });
+  }
 });
 
 // Not the right spot for this fn, but relates to updateRoomList...
