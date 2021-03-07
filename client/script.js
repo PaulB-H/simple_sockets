@@ -45,7 +45,6 @@ let hideErrorTimeout;
 
 const scrollBottom = () => {
   msgInputAndSendWrapper.scrollIntoView(false);
-  console.log("scrollhit");
 };
 
 const startHideErrorTimeout = () => {
@@ -156,7 +155,7 @@ const reqJoinRoom = () => {
 };
 
 socket.on("joinSuccess", (roomNum) => {
-  console.log(roomNum);
+  console.log(`Joined ${roomNum} successfully!`);
   hideMainSections();
   chatRoomUI.classList.remove("d-none");
   chatRoomNum.innerHTML = roomNum;
@@ -233,13 +232,6 @@ const sendMessage = () => {
   chatRoomMsgInput.style.height = "36px";
   chatRoomMsgInput.value = "";
   chatRoomMsgInput.focus();
-
-  // With the "in" operator, we test whether the property exists (regardless of value), anywhere in window's prototype chain.
-  // if ("ontouchstart" in window) {
-  //   console.log("Touch enabled device");
-  // } else {
-  //   console.log("Non touch device");
-  // }
 };
 chatRoomMsgInput.addEventListener("keydown", (event) => {
   let touchDevice = false;
@@ -328,7 +320,6 @@ socket.on("updateRoomList", (roomList) => {
 
 // Not the right spot for this fn, but relates to updateRoomList...
 const joinRoomList = (roomNum, passReq) => {
-  console.log(roomNum, passReq);
   if (passReq) {
     // Open overlay, ask for password to room
     // Send join request with password
