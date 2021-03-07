@@ -79,7 +79,6 @@ function showJoinCreateUI() {
 }
 
 function showRoomList() {
-  console.log("Waty");
   hideMainSections();
   roomListUI.classList.remove("d-none");
 }
@@ -311,4 +310,18 @@ socket.on("disconnect", () => {
   console.log("Disconnect");
   hideMainSections();
   noConnOverlay.classList.remove("d-none");
+});
+
+// Global Emits
+socket.on("updateRoomList", (roomList) => {
+  roomListUL.innerHTML = "";
+
+  roomList.forEach((room) => {
+    roomListUL.insertAdjacentHTML(
+      "afterbegin",
+      `
+      <li class="room-list-li"><p>Room: <strong>${room.roomNum}</strong> | Password: <strong>${room.passReq}</strong></p><button onclick="joinRoomList(${room.roomNum})">Join room <strong>${room.roomNum}</strong></button></li>
+    `
+    );
+  });
 });
