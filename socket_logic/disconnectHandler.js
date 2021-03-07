@@ -1,4 +1,4 @@
-module.exports = (io, socket, users, rooms) => {
+module.exports = (io, socket, users, rooms, roomList) => {
   // START disconnecting
 
   /*
@@ -31,7 +31,17 @@ module.exports = (io, socket, users, rooms) => {
             }
           });
 
-          if (room.users.length === 0) rooms.delete(room);
+          if (room.users.length === 0) {
+            rooms.delete(room);
+
+            roomList.forEach((roomListItem) => {
+              if (roomListItem.roomNum === room.roomNum) {
+                roomList.delete(roomListItem);
+              }
+            });
+
+            io.emit("updateRoomList", [...roomList]);
+          }
         }
       });
     }
