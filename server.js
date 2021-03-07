@@ -40,7 +40,7 @@ const onConnection = (socket) => {
   registerMessageHandlers(io, socket, users);
 
   // Disconnect Handler
-  registerDisconnectHandlers(io, socket, users, rooms);
+  registerDisconnectHandlers(io, socket, users, rooms, roomList);
 };
 
 io.on("connection", onConnection);
