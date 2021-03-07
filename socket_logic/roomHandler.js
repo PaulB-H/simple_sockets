@@ -4,6 +4,23 @@ const bcrypt = require("bcrypt");
 module.exports = (io, socket, users, rooms, roomList) => {
   // START reqJoinRoom
   socket.on("reqJoinRoom", (reqRoomNum, pass) => {
+    if (typeof reqRoomNum === "string" && reqRoomNum !== "") {
+      reqRoomNum = validator.escape(reqRoomNum);
+    } else {
+      // Did not receive room num in correct format
+      console.log("Did not receive room num in correct format");
+      return;
+    }
+
+    if (typeof pass === "string" && typeof pass !== "") {
+      pass = validator.escape(pass);
+    } else if (pass === null || pass === "") {
+      pass = null;
+    } else {
+      console.log("Did not receive pass in correct format");
+      return;
+    }
+
     // Sanitize user input with validator
     if (reqRoomNum !== null && reqRoomNum !== undefined && reqRoomNum !== "") {
       reqRoomNum = validator.escape(reqRoomNum);
