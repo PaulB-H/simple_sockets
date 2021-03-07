@@ -299,6 +299,8 @@ socket.on("room404", () => {
 });
 
 socket.on("disconnect", () => {
+  chatRoomMessages.innerHTML = "";
+  chatRoomUsers.innerText = "";
   console.log("Disconnect");
   hideMainSections();
   noConnOverlay.classList.remove("d-none");
