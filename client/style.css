@@ -105,6 +105,21 @@ input[type="number"] {
 }
 
 /* ********** */
+/* Room List */
+/* ********** */
+.room-list-li {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-family: arial;
+  background: white;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+/* ********** */
 /* Chat Room */
 /* ********** */
 
