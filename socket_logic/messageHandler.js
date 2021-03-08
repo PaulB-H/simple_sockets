@@ -4,7 +4,6 @@ module.exports = (io, socket, users) => {
   // START sendMessage
   socket.on("sendMessage", (message) => {
     console.log(`Message Request from\n${socket.id}`);
-    console.log(users);
 
     let currentUserObj = null;
 
