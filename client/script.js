@@ -315,7 +315,21 @@ socket.on("updateRoomList", (roomList) => {
       roomListUL.insertAdjacentHTML(
         "afterbegin",
         `
-        <li class="room-list-li"><p>Room: <strong>${room.roomNum}</strong> | Password: <strong>${room.passReq}</strong></p><button onclick="joinRoomList(${room.roomNum}, ${room.passReq})">Join room <strong>${room.roomNum}</strong></button></li>
+        <li class="room-list-li">
+          <p style="white-space: nowrap">
+            Room: <strong>${room.roomNum}</strong>
+          </p>
+
+          <p style="white-space: nowrap">
+            Password: <strong>${room.passReq}</strong>
+          </p>
+          
+          <button 
+            onclick="joinRoomList(${room.roomNum}, ${room.passReq})"
+          >
+            Join room <strong>${room.roomNum}</strong>
+          </button>
+        </li>
       `
       );
     });

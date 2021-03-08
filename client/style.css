@@ -3,9 +3,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
 }
 body {
-  background-color: #e5edff;
+  /* background-color: #e5edff; */
 }
 /* ********** */
 /* Global Styles */
@@ -16,12 +17,38 @@ body {
   display: none !important;
 }
 
+.tac {
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: EB Garamond, sans-serif;
+  font-weight: normal;
+}
+p {
+  font-family: Nanum Gothic, sans-serif;
+  font-size: 1.2em;
+}
+
 input,
 button {
   padding: 5px;
   margin: 10px;
   border-radius: 5px;
-  border: 2px solid darkgray;
+  border: 2px solid black;
+  font-size: 1.2em;
+}
+button {
+  background-color: #e5f5ff70;
+}
+input {
+  border-left: none !important;
+  border-right: none !important;
+  padding: 10px;
 }
 
 hr {
@@ -30,9 +57,12 @@ hr {
 
 /* Error Divs*/
 [id*="error"] {
-  background-color: yellow;
+  font-family: Nanum Gothic, sans-serif;
+  font-weight: bold;
+  background-color: rgb(255, 255, 173);
   margin: 10px;
-  padding: 5px;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 /* ********** */
@@ -99,7 +129,6 @@ input[type="number"] {
 
 #set-name-ui,
 #join-create-ui {
-  max-width: 200px;
   display: flex;
   flex-direction: column;
 }
@@ -109,6 +138,7 @@ input[type="number"] {
 /* ********** */
 .room-list-li {
   display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
@@ -131,11 +161,15 @@ textarea resizing script initially. */
 #chat-room-ui {
   width: 100%;
 }
+#chat-room-users {
+  font-size: 1.2em;
+  font-family: EB Garamond;
+}
 #chat-room-messages {
   background-color: #fff;
   word-wrap: break-word;
   height: 50vh;
-  border: 2px solid darkgray;
+  border: 2px solid black;
   border-radius: 10px;
   display: flex;
   flex-direction: column-reverse;
@@ -160,18 +194,20 @@ textarea resizing script initially. */
   DOM element for auto-resizing purposes
 */
 .txta {
-  padding: 0 3px;
+  padding: 10px;
   font-family: sans-serif;
-  line-height: 1.4;
-  font-size: 16px;
-  min-height: 36px;
+  line-height: 1.2;
+  font-size: 1.2em;
+  min-height: 47px;
   width: 100%;
   max-height: 125px;
   border-radius: 5px;
-  border: 2px solid darkgray;
+  border: 2px solid black;
   overflow-x: hidden;
   overflow-y: scroll;
   resize: none;
+  border-left: none;
+  border-right: none;
 }
 #send-msg-btn {
   width: 50%;
@@ -180,6 +216,7 @@ textarea resizing script initially. */
   margin: 0;
   padding: 3px 10px;
   float: right;
+  border-top: none;
 }
 
 /* ********** */

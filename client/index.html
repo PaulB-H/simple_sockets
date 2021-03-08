@@ -53,31 +53,46 @@
 
       <!-- Set Name UI -->
       <div id="set-name-ui" class="main-section">
-        <h3>Set your name</h3>
+        <h1
+          style="
+            font-family: EB Garamond;
+            font-weight: normal;
+            text-align: center;
+          "
+        >
+          Enter Name
+        </h1>
         <div id="set-name-error" class="d-none"></div>
         <input
+          style="padding: 10px; border-left: none; border-right: none"
           id="set-name-input"
           type="text"
           name="Set Username"
           value=""
-          placeholder="Enter your username"
+          placeholder="Enter Name Here"
+          autocomplete="off"
         />
-        <button type="button" name="button" onclick="setUsername()">
-          Set Username
+        <button
+          style="background-color: #e5f5ff70"
+          type="button"
+          name="button"
+          onclick="setUsername()"
+        >
+          🡄 Tap to Join 🡆
         </button>
       </div>
       <!-- END Set Name UI -->
 
       <!-- Join or Create Room UI -->
       <div id="join-create-ui" class="main-section d-none">
-        <h3>Join or Create Room</h3>
+        <h1 class="tac">Join or Create Room</h1>
 
         <hr />
 
         <button onclick="showRoomList()">Show room list instead</button>
 
         <div id="join-create-error"></div>
-        Room Number:
+        <p style="font-family: Nanum Gothic">Room Number</p>
         <input
           id="join-create-inputNum"
           type="number"
@@ -86,7 +101,7 @@
           placeholder="Enter room number"
         />
 
-        Password:
+        <p style="font-family: Nanum Gothic">Password</p>
         <input
           id="join-create-inputPass"
           type="string"
@@ -106,16 +121,23 @@
       <!-- END Join or Create Room UI -->
 
       <!-- Room List UI -->
-      <div id="room-list-ui" class="main-section d-none">
-        <h3>Room List</h3>
+      <div
+        style="text-align: center"
+        id="room-list-ui"
+        class="main-section d-none"
+      >
+        <h1>Room List</h1>
 
         <hr />
 
         <div id="room-list-error"></div>
 
         <p style="padding: 10px">
-          Note: You can only join rooms without passwords right now!
+          Note: Button here will not work for rooms with passwords yet!
         </p>
+
+        <hr />
+
         <ul id="room-list-ul"></ul>
 
         <button onclick="showJoinCreateUI()">Join Directly or Create</button>
@@ -124,16 +146,18 @@
 
       <!-- Chat Room UI -->
       <div id="chat-room-ui" class="main-section d-none">
-        <h3>Chat Room # <span id="chat-room-num"></span></h3>
+        <h1 style="text-align: center">
+          Chat Room # <span id="chat-room-num"></span>
+        </h1>
 
-        Online:
+        <p>Online</p>
         <div id="chat-room-users"></div>
 
         <div id="chat-room-error" class="d-none"></div>
 
         <div id="chat-room-messages"></div>
 
-        Message:
+        <p>Message</p>
         <div
           id="msg-input-and-send-wrapper"
           style="width: 100%; position: relative; margin-bottom: 5px"
