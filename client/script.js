@@ -44,7 +44,7 @@ mainSections.add(noConnOverlay);
 let hideErrorTimeout;
 
 const scrollBottom = () => {
-  msgInputAndSendWrapper.scrollIntoView(false);
+  // msgInputAndSendWrapper.scrollIntoView(false);
 };
 
 const startHideErrorTimeout = () => {
