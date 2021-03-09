@@ -89,7 +89,7 @@
 
         <hr />
 
-        <button onclick="showRoomList()">Show room list instead</button>
+        <button onclick="showRoomList()">Show Room List</button>
 
         <div id="join-create-error"></div>
         <p style="font-family: Nanum Gothic">Room Number</p>
@@ -143,6 +143,26 @@
         <button onclick="showJoinCreateUI()">Join Directly or Create</button>
       </div>
       <!-- END Room List UI -->
+
+      <!-- Room List Overlay -->
+      <div id="room-list-overlay" class="d-none">
+        <h1 id="room-list-overlay-header">
+          Enter Password for<br />Room
+          <span id="room-list-overlay-room-num"></span>
+        </h1>
+        <input
+          id="room-list-overlay-input-pass"
+          type="string"
+          name="Room Password"
+          value=""
+          placeholder="Enter room password"
+        />
+        <div>
+          <button id="room-list-overlay-cancel">Cancel</button>
+          <button id="room-list-overlay-join">Join</button>
+        </div>
+      </div>
+      <!-- END Room List Overlay -->
 
       <!-- Chat Room UI -->
       <div id="chat-room-ui" class="main-section d-none">
