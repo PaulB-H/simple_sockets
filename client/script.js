@@ -103,7 +103,7 @@ function showRoomList() {
 }
 
 socket.on("connected", () => {
-  console.log("Connected");
+  // console.log("Connected");
   hideMainSections();
   setNameUI.classList.remove("d-none");
 });
@@ -114,13 +114,13 @@ const setUsername = () => {
 };
 
 socket.on("nameSet", (payload) => {
-  console.log(`Name set to ${payload}`);
+  // console.log(`Name set to ${payload}`);
   hideMainSections();
   joinCreateUI.classList.remove("d-none");
 });
 
 socket.on("nameTaken", () => {
-  console.log("Name taken");
+  // console.log("Name taken");
   setNameError.classList.contains("d-none") &&
     setNameError.classList.remove("d-none");
 
@@ -132,11 +132,11 @@ socket.on("nameTaken", () => {
 });
 
 socket.on("alreadyName", () => {
-  console.log("That already is my name...");
+  // console.log("That already is my name...");
 });
 
 socket.on("userNameEmpty", () => {
-  console.log("DENIED: Sent request without username");
+  // console.log("DENIED: Sent request without username");
 
   setNameError.classList.remove("d-none");
 
@@ -166,16 +166,17 @@ const reqJoinRoom = () => {
     return;
   }
 
-  console.log(
-    `Requesting to join room # ${roomNum} ${
-      roomPass !== "" ? "with a" : "without a"
-    } password`
-  );
+  // console.log(
+  //   `Requesting to join room # ${roomNum} ${
+  //     roomPass !== "" ? "with a" : "without a"
+  //   } password`
+  // );
+
   socket.emit("reqJoinRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
 socket.on("joinSuccess", (roomNum) => {
-  console.log(`Joined ${roomNum} successfully!`);
+  // console.log(`Joined ${roomNum} successfully!`);
   hideMainSections();
   chatRoomUI.classList.remove("d-none");
   chatRoomNum.innerHTML = roomNum;
@@ -220,16 +221,17 @@ const reqCreateRoom = () => {
     return;
   }
 
-  console.log(
-    `Requesting to create room # ${roomNum} ${
-      roomPass !== "" ? "with a" : "without a"
-    } password`
-  );
+  // console.log(
+  //   `Requesting to create room # ${roomNum} ${
+  //     roomPass !== "" ? "with a" : "without a"
+  //   } password`
+  // );
+
   socket.emit("reqCreateRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
 socket.on("roomCreated", (roomNum, createdBy) => {
-  console.log(`Room # ${roomNum} was created`);
+  // console.log(`Room # ${roomNum} was created`);
 
   hideMainSections();
 
@@ -268,7 +270,7 @@ chatRoomMsgInput.addEventListener("keydown", (event) => {
 });
 
 socket.on("noMessageFound", () => {
-  console.log("No message found in request");
+  // console.log("No message found in request");
   chatRoomError.classList.remove("d-none");
 
   clearErrorTimeout();
@@ -308,7 +310,7 @@ socket.on("userLeft", (leftUsername) => {
 });
 
 socket.on("room404", () => {
-  console.log("Received room 404");
+  // console.log("Received room 404");
   joinCreateError.classList.contains("d-none") &&
     joinCreateError.classList.remove("d-none");
 
@@ -323,7 +325,7 @@ socket.on("room404", () => {
 socket.on("disconnect", () => {
   chatRoomMessages.innerHTML = "";
   chatRoomUsers.innerText = "";
-  console.log("Disconnect");
+  // console.log("Disconnect");
   hideMainSections();
   noConnOverlay.classList.remove("d-none");
 });
@@ -356,7 +358,6 @@ socket.on("updateRoomList", (roomList) => {
       );
     });
   } else {
-    console.log("Else");
     roomListUL.insertAdjacentHTML(
       "afterbegin",
       `
