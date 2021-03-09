@@ -183,9 +183,11 @@ socket.on("joinSuccess", (roomNum) => {
 
 socket.on("passNotMatch", () => {
   joinCreateError.classList.remove("d-none");
+  roomListOverlayError.classList.remove("d-none");
 
   clearErrorTimeout();
   joinCreateError.innerText = "Error: Wrong password";
+  roomListOverlayError.innerText = "Error: Wrong password";
   startHideErrorTimeout();
 });
 
@@ -345,7 +347,7 @@ socket.on("updateRoomList", (roomList) => {
           </p>
           
           <button 
-            onclick="joinRoomList(${room.roomNum}, ${room.passReq})"
+            onclick="joinRoomFromList(${room.roomNum}, ${room.passReq})"
           >
             Join room <strong>${room.roomNum}</strong>
           </button>
@@ -364,13 +366,23 @@ socket.on("updateRoomList", (roomList) => {
   }
 });
 
-// Not the right spot for this fn, but relates to updateRoomList...
-const joinRoomList = (roomNum, passReq) => {
+const joinRoomFromList = (roomNum, passReq) => {
   if (passReq) {
-    // Open overlay, ask for password to room
-    // Send join request with password
+    // Open roomListOverlay, "pass in" room num through innerText
+    roomListOverlay.classList.remove("d-none");
+    roomListOverlayRoomNum.innerText = roomNum;
   } else {
     // Send join request with null password
     socket.emit("reqJoinRoom", roomNum.toString(), null);
   }
 };
+
+roomListOverlayCancel.addEventListener("click", () => {
+  roomListOverlay.classList.add("d-none");
+});
+roomListOverlayJoin.addEventListener("click", () => {
+  const roomValue = roomListOverlayRoomNum.innerText;
+  const pass = roomListOverlayInputPass.value;
+
+  socket.emit("reqJoinRoom", roomValue, pass);
+});
