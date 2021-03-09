@@ -18,12 +18,32 @@ const joinCreateInputPass = document.getElementById("join-create-inputPass");
 const joinCreateError = document.getElementById("join-create-error");
 errorDivs.add(joinCreateError);
 
-// Room list
+// Room List
 const roomListUI = document.getElementById("room-list-ui");
 mainSections.add(roomListUI);
 const roomListUL = document.getElementById("room-list-ul");
 const roomListError = document.getElementById("room-list-error");
 errorDivs.add(roomListError);
+
+// Room List Overlay
+const roomListOverlay = document.getElementById("room-list-overlay");
+mainSections.add(roomListOverlay);
+
+const roomListOverlayHeader = document.getElementById(
+  "room-list-overlay-header"
+);
+const roomListOverlayRoomNum = document.getElementById(
+  "room-list-overlay-room-num"
+);
+const roomListOverlayInputPass = document.getElementById(
+  "room-list-overlay-input-pass"
+);
+const roomListOverlayCancel = document.getElementById(
+  "room-list-overlay-cancel"
+);
+const roomListOverlayJoin = document.getElementById("room-list-overlay-join");
+const roomListOverlayError = document.getElementById("room-list-overlay-error");
+errorDivs.add(roomListOverlayError);
 
 // Chat Room UI
 const chatRoomUI = document.getElementById("chat-room-ui");
