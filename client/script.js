@@ -18,7 +18,7 @@ const joinCreateInputPass = document.getElementById("join-create-inputPass");
 const joinCreateError = document.getElementById("join-create-error");
 errorDivs.add(joinCreateError);
 
-// Room List
+// Room List UI
 const roomListUI = document.getElementById("room-list-ui");
 mainSections.add(roomListUI);
 const roomListUL = document.getElementById("room-list-ul");
