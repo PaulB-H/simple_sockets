@@ -21,14 +21,6 @@ module.exports = (io, socket, users, rooms, roomList) => {
       return;
     }
 
-    // Sanitize user input with validator
-    if (reqRoomNum !== null && reqRoomNum !== undefined && reqRoomNum !== "") {
-      reqRoomNum = validator.escape(reqRoomNum);
-    }
-    if (pass !== null && pass !== undefined && pass !== "") {
-      pass = validator.escape(pass);
-    }
-
     console.log(`
 Join Room Request
 Socket ID: ${socket.id}
