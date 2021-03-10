@@ -110,6 +110,12 @@ Password: ${pass === null ? "None" : "Included"}
       return;
     }
 
+    if (isNaN(parseInt(reqRoomNum))) {
+      // reqRoomNum === NaN
+      console.log("DENIED: reqRoomNum === NaN");
+      return;
+    }
+
     if (typeof pass === "string" && pass !== "") {
       pass = validator.escape(pass);
     } else {
