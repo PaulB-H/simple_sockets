@@ -61,11 +61,51 @@ const chatRoomMsgInput = document.getElementById("chat-room-msg-input");
 const noConnOverlay = document.getElementById("no-conn-overlay");
 mainSections.add(noConnOverlay);
 
-let hideErrorTimeout;
-
 const scrollBottom = () => {
   // msgInputAndSendWrapper.scrollIntoView(false);
 };
+
+const showHideBtns = document.querySelectorAll(".toggle-password");
+
+let hidePassTimeout;
+
+const startHidePassTimeout = () => {
+  hidePassTimeout = window.setTimeout(() => {
+    roomListOverlayInputPass.type = "password";
+    joinCreateInputPass.type = "password";
+    showHideBtns.forEach((elem) => {
+      elem.innerText = "Show";
+    });
+  }, 10000);
+};
+
+const clearPassTimeout = () => {
+  window.clearTimeout(hidePassTimeout);
+};
+
+const togglePass = () => {
+  if (showHideBtns[0].innerText === "Hide") {
+    clearPassTimeout();
+    roomListOverlayInputPass.type = "password";
+    joinCreateInputPass.type = "password";
+    showHideBtns.forEach((elem) => {
+      elem.innerText = "Show";
+    });
+  } else {
+    clearPassTimeout();
+
+    roomListOverlayInputPass.type = "text";
+    joinCreateInputPass.type = "text";
+
+    showHideBtns.forEach((elem) => {
+      elem.innerText = "Hide";
+    });
+
+    startHidePassTimeout();
+  }
+};
+
+let hideErrorTimeout;
 
 const startHideErrorTimeout = () => {
   hideErrorTimeout = window.setTimeout(() => {
