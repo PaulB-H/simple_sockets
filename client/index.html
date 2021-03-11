@@ -101,10 +101,13 @@
           placeholder="Enter room number"
         />
 
-        <p style="font-family: Nanum Gothic">Password</p>
+        <p class="password-label">
+          Password
+          <button class="toggle-password" onclick="togglePass()">Show</button>
+        </p>
         <input
           id="join-create-inputPass"
-          type="string"
+          type="password"
           name="Room Password"
           value=""
           placeholder="Enter room password"

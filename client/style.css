@@ -136,6 +136,21 @@ input[type="number"] {
   flex-direction: column;
 }
 
+.password-label {
+  font-family: Nanum Gothic;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.toggle-password {
+  margin: 0;
+  padding: 3px;
+  font-size: 1em;
+  margin-bottom: -10px;
+  border-bottom: none;
+  margin-right: 10px;
+}
+
 /* ********** */
 /* Room List */
 /* ********** */
