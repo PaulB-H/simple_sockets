@@ -148,9 +148,24 @@
           <span id="room-list-overlay-room-num"></span>
         </h1>
         <div id="room-list-overlay-error"></div>
+        <p class="password-label" style="color: white; width: 222.667px">
+          Password
+          <button
+            class="toggle-password"
+            style="
+              margin-right: 0;
+              margin-bottom: -12px;
+              background-color: #e5f5ff;
+              z-index: 6;
+            "
+            onclick="togglePass()"
+          >
+            Show
+          </button>
+        </p>
         <input
           id="room-list-overlay-input-pass"
-          type="string"
+          type="password"
           name="Room Password"
           value=""
           placeholder="Enter room password"
