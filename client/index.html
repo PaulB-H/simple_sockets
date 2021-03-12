@@ -20,33 +20,14 @@
     <div id="content">
       <!-- Welcome UI -->
       <div id="welcome-ui" class="main-section d-none">
-        <h3>Simple Sockets</h3>
-        <p>
-          Welcome to simple-sockets. This is my first time working with
-          Socket.io, and has quickly become one of my favorite projects. This is
-          my MVP (minimum-viable-product) of a chat app.
-        </p>
-        <hr />
-        <h3>How to:</h3>
-        <p>
-          Set a username, then join or create a room. Passwords are saved hashed
-          in a server side room object
-        </p>
-
-        <p>
-          Usernames are unique across the app, and are freed for someone else
-          when you disconnect.
-        </p>
-
-        <p>
-          Connections and messages are not persistent. If you refresh or loose
-          connection, you will need to set a username again.
-        </p>
-
-        <p>Rooms are currently persistent until server reset.</p>
-
+        <h1 style="text-decoration: underline; margin-bottom: 10px">
+          Simple Sockets
+        </h1>
+        <p>Set a username, then join or create a room</p>
+        <p>Usernames are freed when you disconnect</p>
+        <p>Rooms with 0 users are deleted</p>
         <button type="button" name="button" onclick="showSetUsername()">
-          Enter
+          Start
         </button>
       </div>
       <!-- END Welcome UI -->

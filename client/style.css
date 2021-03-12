@@ -132,6 +132,13 @@ input[type="number"] {
   flex-direction: column;
 }
 
+#welcome-ui {
+  text-align: center;
+}
+#welcome-ui p {
+  margin-bottom: 5px;
+}
+
 #set-name-ui,
 #join-create-ui {
   display: flex;
