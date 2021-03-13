@@ -3,6 +3,10 @@ const socket = io();
 const mainSections = new Set();
 const errorDivs = new Set();
 
+// Welcome UI
+const welcomeUI = document.getElementById("welcome-ui");
+mainSections.add(welcomeUI);
+
 // Set Name UI & Elements
 const setNameUI = document.getElementById("set-name-ui");
 mainSections.add(setNameUI);
@@ -132,6 +136,12 @@ function hideMainSections() {
   });
 }
 
+function showSetUsername() {
+  localStorage.setItem("viewedWelcomeUI", true);
+  hideMainSections();
+  setNameUI.classList.remove("d-none");
+}
+
 function showJoinCreateUI() {
   hideMainSections();
   joinCreateUI.classList.remove("d-none");
@@ -145,7 +155,11 @@ function showRoomList() {
 socket.on("connected", () => {
   // console.log("Connected");
   hideMainSections();
-  setNameUI.classList.remove("d-none");
+  if (!localStorage.getItem("viewedWelcomeUI")) {
+    welcomeUI.classList.remove("d-none");
+  } else {
+    setNameUI.classList.remove("d-none");
+  }
 });
 
 const setUsername = () => {
