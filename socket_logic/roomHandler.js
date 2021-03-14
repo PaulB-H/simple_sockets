@@ -125,6 +125,18 @@ Password: ${pass === null ? "None" : "Included"}
               );
             }
           });
+
+          if (room.users.length === 0) {
+            rooms.delete(room);
+
+            roomList.forEach((roomListItem) => {
+              if (roomListItem.roomNum === room.roomNum) {
+                roomList.delete(roomListItem);
+              }
+            });
+
+            io.emit("updateRoomList", [...roomList]);
+          }
         }
       });
 
