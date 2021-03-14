@@ -229,6 +229,14 @@ const reqJoinRoom = () => {
   socket.emit("reqJoinRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
+const reqLeaveRoom = () => {
+  socket.emit("reqLeaveRoom");
+};
+socket.on("leaveRoomAccepted", () => {
+  hideMainSections();
+  joinCreateUI.classList.remove("d-none");
+});
+
 socket.on("joinSuccess", (roomNum) => {
   // console.log(`Joined ${roomNum} successfully!`);
   hideMainSections();

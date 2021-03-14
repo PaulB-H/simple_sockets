@@ -97,6 +97,43 @@ Password: ${pass === null ? "None" : "Included"}
   });
   // END reqJoinRoom
 
+  // START reqLeaveRoom
+  socket.on("reqLeaveRoom", () => {
+    let currentUserObj;
+    users.forEach((user) => {
+      if (user.socketID === socket.id) {
+        currentUserObj = user;
+      }
+    });
+
+    if (!currentUserObj) return; // Couldn't find user
+
+    if (!currentUserObj.currentRoom) {
+      // User not in a room, rejected
+      return;
+    } else {
+      rooms.forEach((room) => {
+        if (room.roomNum === currentUserObj.currentRoom) {
+          room.users.forEach((user, index) => {
+            if (user === currentUserObj.socketUsername) {
+              // console.log("Found user, removing");
+              room.users.splice(index, 1);
+              io.to(room.roomNum).emit("updateUsers", room.users);
+              io.to(room.roomNum).emit(
+                "userLeft",
+                currentUserObj.socketUsername
+              );
+            }
+          });
+        }
+      });
+
+      currentUserObj.currentRoom = null;
+      socket.emit("leaveRoomAccepted");
+    }
+  });
+  // END reqLeaveRoom
+
   // START reqCreateRoom
   socket.on("reqCreateRoom", async (reqRoomNum, pass) => {
     if (!socket) return;
