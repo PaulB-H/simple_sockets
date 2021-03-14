@@ -175,7 +175,7 @@
           <p>Online <span id="totalUsersInRoom">##</span></p>
           <button
             style="margin: 0; padding: 0 5px; background-color: #fee"
-            onclick="reqLeaveRoom()"
+            onclick="openLeaveConfirm()"
           >
             Leave Room
           </button>
@@ -214,6 +214,44 @@
         </div>
       </div>
       <!-- END Chat Room UI -->
+
+      <!-- Leave Room Overlay -->
+      <div
+        id="leave-room-overlay"
+        class="d-none"
+        style="
+          z-index: 5;
+          background-color: rgba(4, 4, 4, 0.84);
+          width: 100vw;
+          height: 100vh;
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 5px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        "
+      >
+        <h1 style="color: white">Are you sure you want to leave the room?</h1>
+        <div style="width: 100%; display: flex; justify-content: space-evenly">
+          <button
+            style="width: 20%; background-color: #fdd"
+            onclick="reqLeaveRoom()"
+          >
+            Yes
+          </button>
+          <button
+            style="width: 20%; background-color: #dff"
+            onclick="cancelLeaveReq()"
+          >
+            No
+          </button>
+        </div>
+      </div>
+      <!-- END Leave Room Overlay -->
 
       <div id="no-conn-overlay" class="d-none">
         <h4 style="color: white">NO CONNECTION</h4>

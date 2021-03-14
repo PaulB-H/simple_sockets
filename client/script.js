@@ -62,6 +62,9 @@ const msgInputAndSendWrapper = document.getElementById(
 );
 const chatRoomMsgInput = document.getElementById("chat-room-msg-input");
 
+const leaveRoomOverlay = document.getElementById("leave-room-overlay");
+mainSections.add(leaveRoomOverlay);
+
 const noConnOverlay = document.getElementById("no-conn-overlay");
 mainSections.add(noConnOverlay);
 
@@ -229,6 +232,12 @@ const reqJoinRoom = () => {
   socket.emit("reqJoinRoom", roomNum, roomPass === "" ? null : roomPass);
 };
 
+const openLeaveConfirm = () => {
+  leaveRoomOverlay.classList.remove("d-none");
+};
+const cancelLeaveReq = () => {
+  leaveRoomOverlay.classList.add("d-none");
+};
 const reqLeaveRoom = () => {
   socket.emit("reqLeaveRoom");
 };
