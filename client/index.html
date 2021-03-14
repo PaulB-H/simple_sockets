@@ -19,7 +19,7 @@
     <!-- Content -->
     <div id="content">
       <!-- Welcome UI -->
-      <div id="welcome-ui" class="main-section">
+      <div id="welcome-ui" class="main-section d-none">
         <h1 style="text-decoration: underline; margin-bottom: 10px">
           Simple Sockets
         </h1>
@@ -164,7 +164,23 @@
           Room # <span id="chat-room-num"></span>
         </h1>
 
-        <p>Online</p>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+          "
+        >
+          <p>Online <span id="totalUsersInRoom">##</span></p>
+          <button
+            style="margin: 0; padding: 0 5px; background-color: #fee"
+            onclick="leaveRoom()"
+          >
+            Leave Room
+          </button>
+        </div>
+
         <div id="chat-room-users"></div>
 
         <div id="chat-room-error" class="d-none"></div>
