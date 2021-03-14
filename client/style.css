@@ -45,6 +45,7 @@ button {
   border-radius: 5px;
   border: 2px solid black;
   font-size: 1.2em;
+  font-family: Nanum Gothic, sans-serif;
 }
 button {
   background-color: #e5f5ff70;
@@ -236,7 +237,7 @@ textarea resizing script initially. */
   font-weight: bold;
 }
 .chat-msg-txt {
-  font-family: sans-serif;
+  font-family: Nanum Gothic, sans-serif;
   white-space: pre-wrap;
 }
 
@@ -248,7 +249,7 @@ textarea resizing script initially. */
 */
 .txta {
   padding: 10px;
-  font-family: sans-serif;
+  font-family: Nanum Gothic, sans-serif;
   line-height: 1.2;
   font-size: 1.2em;
   min-height: 47px;
