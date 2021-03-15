@@ -71,6 +71,23 @@ hr {
   border-radius: 10px;
 }
 
+/* Global Overlay Styling */
+.overlay {
+  z-index: 5;
+  background-color: #000c;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  text-align: center;
+}
+
 /* ********** */
 /* Scrollbar Settings */
 /* ********** */
@@ -177,17 +194,11 @@ input[type="number"] {
   border-radius: 5px;
 }
 
-#room-list-overlay {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-  background: rgba(4, 4, 4, 0.84);
-  width: 100%;
-  height: 100%;
-}
+/*  
+  #room-list-overlay styles set
+  in global overlay class at top
+  Child rules set below
+*/
 #room-list-overlay-header {
   text-align: center;
   color: white;
@@ -277,17 +288,3 @@ textarea resizing script initially. */
 /* ********** */
 /* END Chat Room */
 /* ********** */
-
-/* Overlay that appears on connection loss */
-#no-conn-overlay {
-  z-index: 5;
-  background-color: black;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

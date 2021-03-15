@@ -123,7 +123,7 @@
       <!-- END Room List UI -->
 
       <!-- Room List Overlay -->
-      <div id="room-list-overlay" class="d-none">
+      <div id="room-list-overlay" class="d-none overlay">
         <h1 id="room-list-overlay-header">
           Enter Password for<br />Room
           <span id="room-list-overlay-room-num"></span>
@@ -216,25 +216,7 @@
       <!-- END Chat Room UI -->
 
       <!-- Leave Room Overlay -->
-      <div
-        id="leave-room-overlay"
-        class="d-none"
-        style="
-          z-index: 5;
-          background-color: rgba(4, 4, 4, 0.84);
-          width: 100vw;
-          height: 100vh;
-          position: absolute;
-          top: 0;
-          left: 0;
-          padding: 5px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-        "
-      >
+      <div id="leave-room-overlay" class="d-none overlay">
         <h1 style="color: white">Are you sure you want to leave the room?</h1>
         <div style="width: 100%; display: flex; justify-content: space-evenly">
           <button
@@ -253,7 +235,7 @@
       </div>
       <!-- END Leave Room Overlay -->
 
-      <div id="no-conn-overlay" class="d-none">
+      <div id="no-conn-overlay" class="d-none overlay">
         <h4 style="color: white">NO CONNECTION</h4>
       </div>
     </div>
