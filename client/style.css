@@ -250,6 +250,7 @@ textarea resizing script initially. */
 .chat-msg-txt {
   font-family: Nanum Gothic, sans-serif;
   white-space: pre-wrap;
+  margin-left: 10px;
 }
 
 /* 
