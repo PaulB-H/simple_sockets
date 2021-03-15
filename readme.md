@@ -11,9 +11,11 @@
 
 <hr />
 
-<a href="https://simple-sockets.herokuapp.com/" target="_blank">
-	<h3>Live site</h3>
-</a>
+<h3>
+  <a href="https://simple-sockets.herokuapp.com/" target="_blank">
+    Live site
+  </a>
+</h3>
 <p>*May require 10 seconds for Heroku server to start</p>
 
 <hr />
