@@ -40,6 +40,11 @@ Password: ${pass === null ? "None" : "Included"}
       return;
     }
 
+    if (currentUserObj.currentRoom !== null) {
+      console.log("DENIED: Already in a room\n");
+      return;
+    }
+
     // START rooms.size > 0
     if (rooms.size > 0) {
       let roomExists = false;
