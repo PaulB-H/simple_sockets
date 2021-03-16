@@ -32,7 +32,6 @@ errorDivs.add(roomListError);
 // Room List Overlay
 const roomListOverlay = document.getElementById("room-list-overlay");
 mainSections.add(roomListOverlay);
-
 const roomListOverlayHeader = document.getElementById(
   "room-list-overlay-header"
 );
@@ -75,7 +74,6 @@ const scrollBottom = () => {
 const showHideBtns = document.querySelectorAll(".toggle-password");
 
 let hidePassTimeout;
-
 const startHidePassTimeout = () => {
   hidePassTimeout = window.setTimeout(() => {
     roomListOverlayInputPass.type = "password";
@@ -85,11 +83,9 @@ const startHidePassTimeout = () => {
     });
   }, 10000);
 };
-
 const clearPassTimeout = () => {
   window.clearTimeout(hidePassTimeout);
 };
-
 const togglePass = () => {
   if (showHideBtns[0].innerText === "Hide") {
     clearPassTimeout();
@@ -113,7 +109,6 @@ const togglePass = () => {
 };
 
 let hideErrorTimeout;
-
 const startHideErrorTimeout = () => {
   hideErrorTimeout = window.setTimeout(() => {
     errorDivs.forEach((elem) => {
@@ -122,11 +117,9 @@ const startHideErrorTimeout = () => {
     });
   }, 3000);
 };
-
 const clearErrorTimeout = () => {
   window.clearTimeout(hideErrorTimeout);
 };
-
 errorDivs.forEach((elem) => {
   if (!elem.classList.contains("d-none")) elem.classList.add("d-none");
 });
@@ -138,18 +131,15 @@ function hideMainSections() {
     }
   });
 }
-
 function showSetUsername() {
   localStorage.setItem("viewedWelcomeUI", true);
   hideMainSections();
   setNameUI.classList.remove("d-none");
 }
-
 function showJoinCreateUI() {
   hideMainSections();
   joinCreateUI.classList.remove("d-none");
 }
-
 function showRoomList() {
   hideMainSections();
   roomListUI.classList.remove("d-none");
@@ -165,17 +155,16 @@ socket.on("connected", () => {
   }
 });
 
+// Set Username
 const setUsername = () => {
   const nameValue = setNameInput.value;
   socket.emit("setUsername", nameValue);
 };
-
 socket.on("nameSet", (payload) => {
   // console.log(`Name set to ${payload}`);
   hideMainSections();
   joinCreateUI.classList.remove("d-none");
 });
-
 socket.on("nameTaken", () => {
   // console.log("Name taken");
   setNameError.classList.contains("d-none") &&
@@ -187,11 +176,9 @@ socket.on("nameTaken", () => {
 
   startHideErrorTimeout();
 });
-
 socket.on("alreadyName", () => {
   // console.log("That already is my name...");
 });
-
 socket.on("userNameEmpty", () => {
   // console.log("DENIED: Sent request without username");
 
@@ -203,7 +190,9 @@ socket.on("userNameEmpty", () => {
 
   startHideErrorTimeout();
 });
+// END Set Username
 
+// Join Room
 const reqJoinRoom = () => {
   const roomNum = joinCreateInputNum.value;
   const roomPass = joinCreateInputPass.value;
@@ -231,7 +220,50 @@ const reqJoinRoom = () => {
 
   socket.emit("reqJoinRoom", roomNum, roomPass === "" ? null : roomPass);
 };
+socket.on("joinSuccess", (roomNum) => {
+  // console.log(`Joined ${roomNum} successfully!`);
+  hideMainSections();
+  chatRoomUI.classList.remove("d-none");
+  chatRoomNum.innerHTML = roomNum;
+});
+socket.on("passNotMatch", () => {
+  joinCreateError.classList.remove("d-none");
+  roomListOverlayError.classList.remove("d-none");
 
+  clearErrorTimeout();
+  joinCreateError.innerText = "Error: Wrong password";
+  roomListOverlayError.innerText = "Error: Wrong password";
+  startHideErrorTimeout();
+});
+socket.on("roomRequiresPass", () => {
+  joinCreateError.classList.remove("d-none");
+
+  clearErrorTimeout();
+  joinCreateError.innerText = "Error: Room requires password";
+  startHideErrorTimeout();
+});
+socket.on("passNotNeeded", () => {
+  joinCreateError.classList.remove("d-none");
+
+  clearErrorTimeout();
+  joinCreateError.innerText = "Error: Room does not require password";
+  startHideErrorTimeout();
+});
+socket.on("room404", () => {
+  // console.log("Received room 404");
+  joinCreateError.classList.contains("d-none") &&
+    joinCreateError.classList.remove("d-none");
+
+  window.setTimeout(() => {
+    joinCreateError.classList.add("d-none");
+    joinCreateError.innerText = "";
+  }, 3000);
+
+  joinCreateError.innerText = "Error: Room not found";
+});
+// END Join Room
+
+// Leave Room
 const openLeaveConfirm = () => {
   leaveRoomOverlay.classList.remove("d-none");
 };
@@ -245,40 +277,31 @@ socket.on("leaveRoomAccepted", () => {
   hideMainSections();
   joinCreateUI.classList.remove("d-none");
 });
+// END Leave Room
 
-socket.on("joinSuccess", (roomNum) => {
-  // console.log(`Joined ${roomNum} successfully!`);
-  hideMainSections();
-  chatRoomUI.classList.remove("d-none");
-  chatRoomNum.innerHTML = roomNum;
+// Join from Room List
+const joinRoomFromList = (roomNum, passReq) => {
+  if (passReq) {
+    // Open roomListOverlay, "pass in" room num through innerText
+    roomListOverlay.classList.remove("d-none");
+    roomListOverlayRoomNum.innerText = roomNum;
+  } else {
+    // Send join request with null password
+    socket.emit("reqJoinRoom", roomNum.toString(), null);
+  }
+};
+roomListOverlayCancel.addEventListener("click", () => {
+  roomListOverlay.classList.add("d-none");
 });
+roomListOverlayJoin.addEventListener("click", () => {
+  const roomValue = roomListOverlayRoomNum.innerText;
+  const pass = roomListOverlayInputPass.value;
 
-socket.on("passNotMatch", () => {
-  joinCreateError.classList.remove("d-none");
-  roomListOverlayError.classList.remove("d-none");
-
-  clearErrorTimeout();
-  joinCreateError.innerText = "Error: Wrong password";
-  roomListOverlayError.innerText = "Error: Wrong password";
-  startHideErrorTimeout();
+  socket.emit("reqJoinRoom", roomValue, pass);
 });
+// END Join from Room List
 
-socket.on("roomRequiresPass", () => {
-  joinCreateError.classList.remove("d-none");
-
-  clearErrorTimeout();
-  joinCreateError.innerText = "Error: Room requires password";
-  startHideErrorTimeout();
-});
-
-socket.on("passNotNeeded", () => {
-  joinCreateError.classList.remove("d-none");
-
-  clearErrorTimeout();
-  joinCreateError.innerText = "Error: Room does not require password";
-  startHideErrorTimeout();
-});
-
+// Create Room
 const reqCreateRoom = () => {
   const roomNum = joinCreateInputNum.value;
   const roomPass = joinCreateInputPass.value;
@@ -300,7 +323,6 @@ const reqCreateRoom = () => {
 
   socket.emit("reqCreateRoom", roomNum, roomPass === "" ? null : roomPass);
 };
-
 socket.on("roomCreated", (roomNum, createdBy) => {
   // console.log(`Room # ${roomNum} was created`);
 
@@ -312,7 +334,6 @@ socket.on("roomCreated", (roomNum, createdBy) => {
 
   chatRoomUI.classList.remove("d-none");
 });
-
 socket.on("roomAlreadyExists", () => {
   joinCreateError.classList.remove("d-none");
 
@@ -320,7 +341,9 @@ socket.on("roomAlreadyExists", () => {
   joinCreateError.innerText = "Error: Room already exists";
   startHideErrorTimeout();
 });
+// END Create Room
 
+// Send Message
 const sendMessage = () => {
   const message = chatRoomMsgInput.value.trim();
   socket.emit("sendMessage", message);
@@ -339,7 +362,6 @@ chatRoomMsgInput.addEventListener("keydown", (event) => {
     sendMessage();
   }
 });
-
 socket.on("noMessageFound", () => {
   // console.log("No message found in request");
   chatRoomError.classList.remove("d-none");
@@ -348,7 +370,6 @@ socket.on("noMessageFound", () => {
   chatRoomError.innerText = "Error: No message entered!";
   startHideErrorTimeout();
 });
-
 socket.on("newMessage", (userName, message) => {
   chatRoomMessages.insertAdjacentHTML(
     "afterbegin",
@@ -358,50 +379,27 @@ socket.on("newMessage", (userName, message) => {
     </div>`
   );
 });
+// END Send Message
 
-socket.on("updateUsers", (usersArr) => {
-  chatRoomUsers.innerText = "";
-  usersArr.forEach((user) => {
-    chatRoomUsers.innerText += ` ${user} |`;
-  });
-});
-
+// Global Updates
 socket.on("userJoined", (joinedUsername) => {
   chatRoomMessages.insertAdjacentHTML(
     "afterbegin",
     `<p class="user-left-chat" style="margin: 5px; font-size: 1.2em">User: "${joinedUsername}" has joined</p>`
   );
 });
-
 socket.on("userLeft", (leftUsername) => {
   chatRoomMessages.insertAdjacentHTML(
     "afterbegin",
     `<p class="user-left-chat" style="margin: 5px; font-size: 1.2em">User: "${leftUsername}" has left</p>`
   );
 });
-
-socket.on("room404", () => {
-  // console.log("Received room 404");
-  joinCreateError.classList.contains("d-none") &&
-    joinCreateError.classList.remove("d-none");
-
-  window.setTimeout(() => {
-    joinCreateError.classList.add("d-none");
-    joinCreateError.innerText = "";
-  }, 3000);
-
-  joinCreateError.innerText = "Error: Room not found";
-});
-
-socket.on("disconnect", () => {
-  chatRoomMessages.innerHTML = "";
+socket.on("updateUsers", (usersArr) => {
   chatRoomUsers.innerText = "";
-  // console.log("Disconnect");
-  hideMainSections();
-  noConnOverlay.classList.remove("d-none");
+  usersArr.forEach((user) => {
+    chatRoomUsers.innerText += ` ${user} |`;
+  });
 });
-
-// Global Emits
 socket.on("updateRoomList", (roomList) => {
   roomListUL.innerHTML = "";
 
@@ -438,23 +436,10 @@ socket.on("updateRoomList", (roomList) => {
   }
 });
 
-const joinRoomFromList = (roomNum, passReq) => {
-  if (passReq) {
-    // Open roomListOverlay, "pass in" room num through innerText
-    roomListOverlay.classList.remove("d-none");
-    roomListOverlayRoomNum.innerText = roomNum;
-  } else {
-    // Send join request with null password
-    socket.emit("reqJoinRoom", roomNum.toString(), null);
-  }
-};
-
-roomListOverlayCancel.addEventListener("click", () => {
-  roomListOverlay.classList.add("d-none");
-});
-roomListOverlayJoin.addEventListener("click", () => {
-  const roomValue = roomListOverlayRoomNum.innerText;
-  const pass = roomListOverlayInputPass.value;
-
-  socket.emit("reqJoinRoom", roomValue, pass);
+socket.on("disconnect", () => {
+  chatRoomMessages.innerHTML = "";
+  chatRoomUsers.innerText = "";
+  // console.log("Disconnect");
+  hideMainSections();
+  noConnOverlay.classList.remove("d-none");
 });
