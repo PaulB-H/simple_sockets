@@ -1,3 +1,22 @@
+/* 
+
+Style updates:
+
+header, chat room online #, chat room user list, and message input text color all need to be set to white
+
+button: border none
+
+Like this one more
+body #2f4550
+chat background #b8dbd9 
+
+body #264653
+chat background #2a9d8f
+
+
+
+*/
+
 /* CSS Reset */
 * {
   margin: 0;
@@ -10,6 +29,7 @@ html {
 }
 body {
   height: 100%;
+  background-color: #2f4550;
 }
 /* ********** */
 /* Global Styles */
@@ -31,11 +51,13 @@ h4,
 h5 {
   font-family: EB Garamond, sans-serif;
   font-weight: normal;
-  text-shadow: 0 0 3px #a2a2a2;
+  /* text-shadow: 0 0 3px #a2a2a2; */
+  color: white;
 }
 p {
   font-family: Nanum Gothic, sans-serif;
   font-size: 1.2em;
+  color: white;
 }
 
 input,
@@ -43,17 +65,19 @@ button {
   padding: 5px;
   margin: 10px;
   border-radius: 5px;
-  border: 2px solid black;
   font-size: 1.2em;
   font-family: Nanum Gothic, sans-serif;
 }
 button {
-  background-color: #e5f5ff70;
-  box-shadow: 0 0 3px #a2a2a2;
+  background-color: #e5f5ff;
+  /* background-color: #e5f5ff70; */
+  box-shadow: 0 0 3px #000;
+  border: none;
 }
 input {
-  border-left: none !important;
-  border-right: none !important;
+  border: none;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
   padding: 10px;
 }
 
@@ -69,6 +93,7 @@ hr {
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: 0 0 3px #000;
 }
 
 /* Global Overlay Styling */
@@ -188,7 +213,7 @@ input[type="number"] {
   justify-content: space-between;
   align-items: center;
   font-family: arial;
-  background: white;
+  background: none;
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
@@ -229,9 +254,10 @@ textarea resizing script initially. */
 #chat-room-users {
   font-size: 1.2em;
   font-family: EB Garamond;
+  color: white;
 }
 #chat-room-messages {
-  background-color: #fff;
+  background-color: #b8dbd9;
   word-wrap: break-word;
   height: 50vh;
   border: 2px solid black;
@@ -240,17 +266,22 @@ textarea resizing script initially. */
   flex-direction: column-reverse;
   overflow-y: scroll;
 }
+#chat-room-messages p {
+  color: black;
+}
 /* Message wrapper, name, and text */
 .chat-msg {
   margin: 5px;
 }
 .chat-msg-name {
   font-weight: bold;
+  color: black;
 }
 .chat-msg-txt {
   font-family: Nanum Gothic, sans-serif;
   white-space: pre-wrap;
   margin-left: 10px;
+  color: black;
 }
 
 /* 
