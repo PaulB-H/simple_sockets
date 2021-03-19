@@ -1,4 +1,6 @@
 const validator = require("validator");
+const Filter = require("bad-words");
+const filter = new Filter();
 
 module.exports = (io, socket, users) => {
   // START sendMessage
@@ -34,6 +36,7 @@ module.exports = (io, socket, users) => {
     } else {
       message = validator.escape(message);
       message.trim();
+      message = filter.clean(message);
     }
 
     //     console.log(`Send Message Request

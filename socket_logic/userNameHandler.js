@@ -1,4 +1,6 @@
 const validator = require("validator");
+const Filter = require("bad-words");
+const filter = new Filter();
 
 module.exports = (io, socket, users) => {
   // START setUserNames
@@ -10,6 +12,9 @@ module.exports = (io, socket, users) => {
     }
 
     newUserName = validator.escape(newUserName);
+
+    if (filter.isProfane(newUserName)) return;
+
     console.log(`Set Username Request
 Socket ID: ${socket.id}
 username: ${newUserName}
