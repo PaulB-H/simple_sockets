@@ -52,6 +52,7 @@ errorDivs.add(roomListOverlayError);
 const chatRoomUI = document.getElementById("chat-room-ui");
 mainSections.add(chatRoomUI);
 const chatRoomNum = document.getElementById("chat-room-num");
+const totalNumOnline = document.getElementById("total-num-online");
 const chatRoomUsers = document.getElementById("chat-room-users");
 const chatRoomError = document.getElementById("chat-room-error");
 errorDivs.add(chatRoomError);
@@ -330,6 +331,8 @@ socket.on("roomCreated", (roomNum, createdBy) => {
 
   chatRoomNum.innerText = roomNum;
 
+  totalNumOnline.innerText = "1";
+
   chatRoomUsers.innerText += `Creator: ${createdBy} |`;
 
   chatRoomUI.classList.remove("d-none");
@@ -395,7 +398,11 @@ socket.on("userLeft", (leftUsername) => {
   );
 });
 socket.on("updateUsers", (usersArr) => {
+  totalNumOnline.innerText = "";
   chatRoomUsers.innerText = "";
+
+  totalNumOnline.innerText = usersArr.length;
+
   usersArr.forEach((user) => {
     chatRoomUsers.innerText += ` ${user} |`;
   });
