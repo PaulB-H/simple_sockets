@@ -118,21 +118,25 @@ hr {
 /* ********** */
 
 /* Firefox */
+#chat-room-users,
 #chat-room-messages,
 .txta {
   scrollbar-width: thin;
   scrollbar-color: black white;
 }
 /* Webkit */
+#chat-room-users::-webkit-scrollbar,
 #chat-room-messages::-webkit-scrollbar,
 .txta::-webkit-scrollbar {
   width: 5px;
 }
+#chat-room-users::-webkit-scrollbar-thumb,
 #chat-room-messages::-webkit-scrollbar-thumb,
 .txta::-webkit-scrollbar-thumb {
   background-color: black;
   border-radius: 6px;
 }
+#chat-room-users::-webkit-scrollbar-track,
 #chat-room-messages::-webkit-scrollbar-track,
 .txta::-webkit-scrollbar-track {
   background: white;
@@ -255,6 +259,9 @@ textarea resizing script initially. */
   font-size: 1.2em;
   font-family: EB Garamond;
   color: white;
+  display: flex;
+  white-space: nowrap;
+  overflow-x: scroll;
 }
 #chat-room-messages {
   background-color: #b8dbd9;

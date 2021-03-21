@@ -450,3 +450,11 @@ socket.on("disconnect", () => {
   hideMainSections();
   noConnOverlay.classList.remove("d-none");
 });
+
+chatRoomUsers.addEventListener("wheel", (e) => {
+  if (e.deltaY > 0) {
+    chatRoomUsers.scrollLeft += 10;
+  } else {
+    chatRoomUsers.scrollLeft -= 10;
+  }
+});
