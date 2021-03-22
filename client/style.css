@@ -261,7 +261,7 @@ textarea resizing script initially. */
   color: white;
   display: flex;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 #chat-room-messages {
   background-color: #b8dbd9;
