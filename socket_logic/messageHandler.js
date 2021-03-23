@@ -5,7 +5,7 @@ const filter = new Filter();
 module.exports = (io, socket, users) => {
   // START sendMessage
   socket.on("sendMessage", (message) => {
-    console.log(`Message Request from\n${socket.id}`);
+    // console.log(`Message Request from\n${socket.id}`);
 
     let currentUserObj = null;
 
@@ -20,7 +20,7 @@ module.exports = (io, socket, users) => {
     });
 
     if (!currentUserObj) {
-      console.log("Auth Error");
+      // console.log("Auth Error");
       return;
     }
 

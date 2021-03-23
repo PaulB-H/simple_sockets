@@ -6,7 +6,7 @@ module.exports = (io, socket, users) => {
   // START setUserNames
   socket.on("setUsername", (newUserName) => {
     if (typeof newUserName !== "string" || newUserName === "") {
-      console.log(`DENIED: Request contains no username\n`);
+      // console.log(`DENIED: Request contains no username\n`);
       socket.emit("userNameEmpty");
       return;
     }
@@ -15,15 +15,15 @@ module.exports = (io, socket, users) => {
 
     if (filter.isProfane(newUserName)) return;
 
-    console.log(`Set Username Request
-Socket ID: ${socket.id}
-username: ${newUserName}
-    `);
+    //     console.log(`Set Username Request
+    // Socket ID: ${socket.id}
+    // username: ${newUserName}
+    //     `);
 
     let acceptRequest = true;
 
     if (socket.username !== undefined) {
-      console.log(`DENIED: Socket already has username\n`);
+      // console.log(`DENIED: Socket already has username\n`);
       socket.emit("alreadyName");
       acceptRequest = false;
     }
@@ -36,9 +36,9 @@ username: ${newUserName}
     });
 
     if (acceptRequest) {
-      console.log(
-        `ACCEPTED: \nSocket ID: ${socket.id} \nSet socket.username: ${newUserName}\n`
-      );
+      // console.log(
+      //   `ACCEPTED: \nSocket ID: ${socket.id} \nSet socket.username: ${newUserName}\n`
+      // );
 
       socket.username = newUserName;
 

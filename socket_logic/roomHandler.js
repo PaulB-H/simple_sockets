@@ -8,7 +8,7 @@ module.exports = (io, socket, users, rooms, roomList) => {
       reqRoomNum = validator.escape(reqRoomNum);
     } else {
       // Did not receive room num in correct format
-      console.log("Did not receive room num in correct format");
+      // console.log("Did not receive room num in correct format");
       return;
     }
 
@@ -17,16 +17,16 @@ module.exports = (io, socket, users, rooms, roomList) => {
     } else if (pass === null || pass === "") {
       pass = null;
     } else {
-      console.log("Did not receive pass in correct format");
+      // console.log("Did not receive pass in correct format");
       return;
     }
 
-    console.log(`
-Join Room Request
-Socket ID: ${socket.id}
-Room #: ${reqRoomNum}
-Password: ${pass === null ? "None" : "Included"}
-    `);
+    //     console.log(`
+    // Join Room Request
+    // Socket ID: ${socket.id}
+    // Room #: ${reqRoomNum}
+    // Password: ${pass === null ? "None" : "Included"}
+    //     `);
 
     let currentUserObj;
     users.forEach((user) => {
@@ -36,12 +36,12 @@ Password: ${pass === null ? "None" : "Included"}
     });
 
     if (currentUserObj.socketUsername === undefined) {
-      console.log("DENIED: No username\n");
+      // console.log("DENIED: No username\n");
       return;
     }
 
     if (currentUserObj.currentRoom !== null) {
-      console.log("DENIED: Already in a room\n");
+      // console.log("DENIED: Already in a room\n");
       return;
     }
 
@@ -52,17 +52,17 @@ Password: ${pass === null ? "None" : "Included"}
       rooms.forEach((room) => {
         // Check for matching room num
         if (room.roomNum === reqRoomNum) {
-          console.log("Room exists\n");
+          // console.log("Room exists\n");
           roomExists = true;
 
           if (room.pass !== null) {
             if (pass === null || pass === undefined || pass === "") {
-              console.log("DENIED: No pass in request");
+              // console.log("DENIED: No pass in request");
               return socket.emit("roomRequiresPass");
             }
 
             if (!bcrypt.compareSync(pass, room.pass)) {
-              console.log("DENIED: Pass not match");
+              // console.log("DENIED: Pass not match");
               socket.emit("passNotMatch");
               return;
             }
@@ -71,14 +71,14 @@ Password: ${pass === null ? "None" : "Included"}
           // Emit error if user sent pass
           // && room does not require one
           if (room.pass === null && pass) {
-            console.log("DENIED: Pass not needed");
+            // console.log("DENIED: Pass not needed");
             socket.emit("passNotNeeded");
             return;
           }
 
-          console.log(
-            `ACCEPTED: \nsocket.username: ${socket.username} \nJoined room #: ${reqRoomNum} \n`
-          );
+          // console.log(
+          //   `ACCEPTED: \nsocket.username: ${socket.username} \nJoined room #: ${reqRoomNum} \n`
+          // );
           socket.join(`${reqRoomNum}`);
 
           currentUserObj.currentRoom = reqRoomNum;
@@ -92,11 +92,11 @@ Password: ${pass === null ? "None" : "Included"}
       });
 
       if (roomExists === false) {
-        console.log("DENIED: Room does not exist\n");
+        // console.log("DENIED: Room does not exist\n");
         socket.emit("room404");
       }
     } else {
-      console.log("DENIED: Room does not exist\n");
+      // console.log("DENIED: Room does not exist\n");
       socket.emit("room404");
     }
   });
@@ -166,7 +166,7 @@ Password: ${pass === null ? "None" : "Included"}
 
     if (isNaN(parseInt(reqRoomNum))) {
       // reqRoomNum === NaN
-      console.log("DENIED: reqRoomNum === NaN");
+      // console.log("DENIED: reqRoomNum === NaN");
       return;
     }
 
@@ -179,11 +179,11 @@ Password: ${pass === null ? "None" : "Included"}
       pass = null;
     }
 
-    console.log(`Room Creation Request
-Socket ID: ${socket.id}
-Room #: ${reqRoomNum}
-Password: ${pass === null ? "None" : "Included"}
-    `);
+    //     console.log(`Room Creation Request
+    // Socket ID: ${socket.id}
+    // Room #: ${reqRoomNum}
+    // Password: ${pass === null ? "None" : "Included"}
+    //     `);
 
     let currentUserObj;
     users.forEach((user) => {
@@ -193,7 +193,7 @@ Password: ${pass === null ? "None" : "Included"}
     });
 
     if (socket.username === undefined) {
-      console.log("DENIED: No username\n");
+      // console.log("DENIED: No username\n");
       return;
     }
 
@@ -204,7 +204,7 @@ Password: ${pass === null ? "None" : "Included"}
       rooms.forEach((room) => {
         // Check for matching room num
         if (room.roomNum === reqRoomNum) {
-          console.log("DENIED: Room exists\n");
+          // console.log("DENIED: Room exists\n");
           roomExists = true;
           socket.emit("roomAlreadyExists");
         }
@@ -212,7 +212,7 @@ Password: ${pass === null ? "None" : "Included"}
     }
 
     if (!roomExists) {
-      console.log(`ACCEPTED: \nRoom # ${reqRoomNum} created \n`);
+      // console.log(`ACCEPTED: \nRoom # ${reqRoomNum} created \n`);
 
       // Join socket to room
       socket.join(`${reqRoomNum}`);

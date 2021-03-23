@@ -27,7 +27,7 @@ const rooms = new Set();
 const roomList = new Set();
 
 const onConnection = (socket) => {
-  console.log(`Socket: ${socket.id} connected \n`);
+  // console.log(`Socket: ${socket.id} connected \n`);
   socket.emit("connected");
   io.emit("updateRoomList", [...roomList]);
 

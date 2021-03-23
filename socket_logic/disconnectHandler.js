@@ -5,7 +5,7 @@ module.exports = (io, socket, users, rooms, roomList) => {
     This maybe should be changed to a "disconnected" event
   */
   socket.on("disconnecting", () => {
-    console.log(`Socket: ${socket.id} is disconnecting\n`);
+    // console.log(`Socket: ${socket.id} is disconnecting\n`);
 
     let currentUserObj;
     users.forEach((user) => {
