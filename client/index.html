@@ -43,6 +43,9 @@
         >
           Enter Name
         </h1>
+        <p style="color: white; text-align: center">
+          <sub>3 to 25 characters</sub>
+        </p>
         <div id="set-name-error" class="d-none"></div>
         <input
           style="padding: 10px; border-left: none; border-right: none"
@@ -52,6 +55,8 @@
           value=""
           placeholder="Enter Name Here"
           autocomplete="off"
+          maxlength="25"
+          minlength="3"
         />
         <button type="button" name="button" onclick="setUsername()">
           &#9668; Tap to Join &#9658;

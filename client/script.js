@@ -157,6 +157,12 @@ socket.on("connected", () => {
 });
 
 // Set Username
+
+setNameInput.addEventListener("keyup", () => {
+  if (setNameInput.value.length >= 26)
+    setNameInput.value = setNameInput.value.slice(0, 25);
+});
+
 const setUsername = () => {
   const nameValue = setNameInput.value;
   socket.emit("setUsername", nameValue);
