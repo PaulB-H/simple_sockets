@@ -22,6 +22,12 @@ module.exports = (io, socket, users) => {
 
     let acceptRequest = true;
 
+    if (newUserName.length < 3 || newUserName.length > 25) {
+      // console.log(`DENIED: newUserName not within 3 and 25 characters \n`);
+      socket.emit("nameLengthErr");
+      acceptRequest = false;
+    }
+
     if (socket.username !== undefined) {
       // console.log(`DENIED: Socket already has username\n`);
       socket.emit("alreadyName");

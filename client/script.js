@@ -172,6 +172,15 @@ socket.on("nameSet", (payload) => {
   hideMainSections();
   joinCreateUI.classList.remove("d-none");
 });
+socket.on("nameLengthErr", () => {
+  setNameError.classList.remove("d-none");
+
+  clearErrorTimeout();
+
+  setNameError.innerText = "Error: 3 to 25 characters only";
+
+  startHideErrorTimeout();
+});
 socket.on("nameTaken", () => {
   // console.log("Name taken");
   setNameError.classList.contains("d-none") &&
