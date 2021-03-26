@@ -36,7 +36,7 @@ module.exports = (io, socket, users) => {
     } else {
       message = validator.escape(message);
       message.trim();
-      message = filter.clean(message);
+      // message = filter.clean(message);
     }
 
     //     console.log(`Send Message Request
