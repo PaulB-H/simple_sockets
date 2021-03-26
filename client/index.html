@@ -86,17 +86,24 @@
           maxlength="4"
         />
 
-        <p class="password-label">
-          Password
-          <button class="toggle-password" onclick="togglePass()">Show</button>
-        </p>
-        <input
-          id="join-create-inputPass"
-          type="password"
-          name="Room Password"
-          value=""
-          placeholder="Enter room password"
-        />
+        <p class="password-label">Password</p>
+
+        <div style="display: flex; flex-direction: column">
+          <button
+            style="max-width: min-content; padding: 5px 10px; align-self: end"
+            class="toggle-password"
+            onclick="togglePass()"
+          >
+            Show
+          </button>
+          <input
+            id="join-create-inputPass"
+            type="password"
+            name="Room Password"
+            value=""
+            placeholder="Enter room password"
+          />
+        </div>
 
         <button type="button" name="button" onclick="reqJoinRoom()">
           Join Room
