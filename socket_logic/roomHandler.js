@@ -156,11 +156,14 @@ module.exports = (io, socket, users, rooms, roomList) => {
     if (!socket) return;
     if (!socket.id) return;
 
-    if (typeof reqRoomNum === "string" && reqRoomNum !== "") {
+    if (
+      typeof reqRoomNum === "string" &&
+      reqRoomNum !== "" &&
+      reqRoomNum.length <= 4
+    ) {
       reqRoomNum = validator.escape(reqRoomNum);
     } else {
-      // Did not receive reqRoomNum
-      // in correct structure
+      socket.emit("roomNumLenErr");
       return;
     }
 
