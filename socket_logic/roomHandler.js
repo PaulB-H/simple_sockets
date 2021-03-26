@@ -162,14 +162,14 @@ module.exports = (io, socket, users, rooms, roomList) => {
       reqRoomNum.length <= 4
     ) {
       reqRoomNum = validator.escape(reqRoomNum);
+      reqRoomNum = Number(reqRoomNum);
     } else {
       socket.emit("roomNumLenErr");
       return;
     }
 
-    if (isNaN(parseInt(reqRoomNum))) {
-      // reqRoomNum === NaN
-      // console.log("DENIED: reqRoomNum === NaN");
+    if (reqRoomNum % 1 !== 0 || reqRoomNum <= 0) {
+      socket.emit("roomNumPositiveFloatErr");
       return;
     }
 
