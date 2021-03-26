@@ -290,6 +290,8 @@ const reqLeaveRoom = () => {
   socket.emit("reqLeaveRoom");
 };
 socket.on("leaveRoomAccepted", () => {
+  chatRoomMessages.innerHTML = "";
+  chatRoomUsers.innerText = "";
   hideMainSections();
   joinCreateUI.classList.remove("d-none");
 });
