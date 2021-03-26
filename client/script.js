@@ -352,6 +352,13 @@ socket.on("roomCreated", (roomNum, createdBy) => {
 
   chatRoomUI.classList.remove("d-none");
 });
+socket.on("roomNumLenErr", () => {
+  joinCreateError.classList.remove("d-none");
+
+  clearErrorTimeout();
+  joinCreateError.innerText = "Error: 1 to 9999 only!";
+  startHideErrorTimeout();
+});
 socket.on("roomAlreadyExists", () => {
   joinCreateError.classList.remove("d-none");
 
