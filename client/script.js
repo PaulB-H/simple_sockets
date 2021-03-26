@@ -368,6 +368,13 @@ socket.on("roomNumPositiveFloatErr", () => {
   joinCreateError.innerText = "Error: Whole numbers from 1 to 9999";
   startHideErrorTimeout();
 });
+socket.on("roomPassLenErr", () => {
+  joinCreateError.classList.remove("d-none");
+
+  clearErrorTimeout();
+  joinCreateError.innerText = "Error: Password 3 to 25 characters";
+  startHideErrorTimeout();
+});
 socket.on("roomAlreadyExists", () => {
   joinCreateError.classList.remove("d-none");
 
