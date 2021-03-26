@@ -459,7 +459,7 @@ socket.on("updateRoomList", (roomList) => {
           </p>
 
           <p style="white-space: nowrap">
-            Password: <strong>${room.passReq}</strong>
+            Password: <strong>${room.passReq ? "Yes" : "No"}</strong>
           </p>
           
           <button 
