@@ -467,6 +467,7 @@ socket.on("updateRoomList", (roomList) => {
           >
             Join room <strong>${room.roomNum}</strong>
           </button>
+          <hr style="width: 100%"/>
         </li>
       `
       );
