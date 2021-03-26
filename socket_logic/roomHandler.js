@@ -174,7 +174,12 @@ module.exports = (io, socket, users, rooms, roomList) => {
     }
 
     if (typeof pass === "string" && pass !== "") {
-      pass = validator.escape(pass);
+      if (pass.length >= 3 && pass.length <= 25) {
+        pass = validator.escape(pass);
+      } else {
+        socket.emit("roomPassLenErr");
+        return;
+      }
     } else {
       // User sent no pass OR
       // Did not receive pass
