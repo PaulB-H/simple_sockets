@@ -359,6 +359,13 @@ socket.on("roomNumLenErr", () => {
   joinCreateError.innerText = "Error: 1 to 9999 only!";
   startHideErrorTimeout();
 });
+socket.on("roomNumPositiveFloatErr", () => {
+  joinCreateError.classList.remove("d-none");
+
+  clearErrorTimeout();
+  joinCreateError.innerText = "Error: Whole numbers from 1 to 9999";
+  startHideErrorTimeout();
+});
 socket.on("roomAlreadyExists", () => {
   joinCreateError.classList.remove("d-none");
 
