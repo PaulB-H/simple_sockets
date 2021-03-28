@@ -162,7 +162,6 @@ module.exports = (io, socket, users, rooms, roomList) => {
       reqRoomNum.length <= 4
     ) {
       reqRoomNum = validator.escape(reqRoomNum);
-      // reqRoomNum = Number(reqRoomNum);
     } else {
       socket.emit("roomNumLenErr");
       return;
@@ -171,6 +170,8 @@ module.exports = (io, socket, users, rooms, roomList) => {
     if (Number(reqRoomNum) % 1 !== 0 || Number(reqRoomNum) <= 0) {
       socket.emit("roomNumPositiveFloatErr");
       return;
+    } else {
+      reqRoomNum = parseInt(reqRoomNum);
     }
 
     if (typeof pass === "string" && pass !== "") {
