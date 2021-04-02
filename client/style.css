@@ -304,7 +304,7 @@ textarea resizing script initially. */
   line-height: 1.2;
   font-size: 1.2em;
   min-height: 47px;
-  width: 100%;
+  /* width: 100%; */
   max-height: 125px;
   border-radius: 5px;
   border: 2px solid black;
@@ -313,16 +313,20 @@ textarea resizing script initially. */
   resize: none;
   border-left: none;
   border-right: none;
+
+  width: 90%;
 }
 #send-msg-btn {
-  width: 50%;
+  width: 10%;
   bottom: 0;
   right: 3px;
   margin: 0;
   padding: 3px 10px;
-  float: right;
   border-top: none;
   margin-top: -3px;
+
+  align-self: flex-end;
+  min-height: 47px;
 }
 
 /* ********** */
