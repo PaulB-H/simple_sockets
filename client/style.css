@@ -317,16 +317,8 @@ textarea resizing script initially. */
   width: 90%;
 }
 #send-msg-btn {
-  width: 10%;
-  bottom: 0;
-  right: 3px;
   margin: 0;
-  padding: 3px 10px;
-  border-top: none;
-  margin-top: -3px;
-
-  align-self: flex-end;
-  min-height: 47px;
+  /* min-height: 47px; */
 }
 
 /* ********** */
