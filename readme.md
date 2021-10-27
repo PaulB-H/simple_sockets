@@ -1,95 +1,81 @@
-<h2>Simple Sockets</h2>
+<h1>Simple Sockets</h1>
+<img src="https://raw.githubusercontent.com/PaulB-H/simple_sockets/main/simplesockets.png" />
 
-<h4>A lightweight Socket.io chat application</h4>
-<p>My first project with Socket.io</p>
+<h5><small>Made with:</small><br /> HTML, CSS, JS, Node.JS</h5>
 
-<hr />
-
-<h4>Features</h4>
-<p>Set a username, then join or create a room</p>
-<p>Rooms can have passwords</p>
-<p>No account / signup required</p>
-<p>Usernames are freed when you disconnect</p>
-<p>Rooms with 0 users are deleted</p>
-<p>DB-less</p>
-
-<hr />
-
-<p>Text input is obviously an important part of a chat application, there is some functionality that is important to me.</p>
-<p>Multi-line input</p>
-<p>Enter on mobile inserts line break, while enter on desktop sends message</p>
-<p>Shift + Enter on desktop to insert line break</p>
-<p>Expanding textarea<br />While normally textarea does not auto-resize, I found a method/script that creates a "shadow clone" that matches the content of the textarea, becomes visible for a second to grab the height, and then sets the hight of the textarea appropriately.</p>
-
-<hr />
-
-<h4>Profanity filtering</h4>
-<p>Currently this is only enabled for usernames. The implementation I attempted for messages was too taxing on the server for messages of 2000+ characters.</p>
-
-<h3>
+<p>
   <a href="https://simple-sockets.herokuapp.com/" target="_blank">
-    Live site
+    simple-sockets.herokuapp.com
   </a>
-</h3>
-<p>*May require 10 seconds for Heroku server to start</p>
+  <br />
+  <small><sup>
+    *May require 10 seconds for Heroku server to start
+   </sup></small>
+</p>
 
-<hr />
+<h2>Description</h2>
+<p>A lightweight chat application using Socket.IO</p>
 
-<h4>Made with:</h4>
+<h2>Details</h2>
+
+<ul>
+	<li>Set a username, then join or create a room</li>
+	<li>Rooms can have passwords</li>
+	<li>No account / signup required</li>
+	<li>Usernames are freed when you disconnect</li>
+	<li>Rooms with 0 users are deleted</li>
+</ul>
+
+<p><strong>Some specific functionality I wanted:</strong></p>
+<ul>
+	<li>Multi-line input</li>
+	<li>
+		Enter key functionality:
+		<ul>
+			<li>On mobile, insert line break</li>
+    		<li>On desktop, send message</li>
+    	</ul>
+	</li>
+	<li>Shift + Enter on desktop to insert line break</li>
+	<li>Expanding textarea**</li>
+</ul>
+
+<p><small><em>* Normally a textarea does not auto-resize, I used a hack to create a "shadow clone" that matches the content of the textarea, becomes visible briefly to get a height, sets the hight of the real textarea to match, before hiding again.</em></small></p>
+
+<h5>Profanity filtering</h5>
+<p>Currently this is only enabled for usernames, I will need to find a more efficient way to do messages.</p>
+
+<h2>Libraries / Frameworks / Packages</h2>
 <ul>
 
-  <li>
-    <a href="https://nodejs.org/en/" target="_blank">
-      Node.js
-    </a>
-    <ul>
-      <li>Server foundation</li>
-	  </ul>
-  </li>
-  
-  <li>
-    <a href="https://www.npmjs.com/package/express" target="_blank">
-      Express
-    </a>
-    <ul>
-      <li>Create HTTP server Socket.io attaches to</li>
-    </ul>
-  </li>
-  
   <li>
     <a href="https://www.npmjs.com/package/socket.io" target="_blank">
       Socket.io
     </a>
-    <ul>
-      <li>Library for websockets</li>
-    </ul>
+  </li>
+
+  <li>
+    <a href="https://www.npmjs.com/package/express" target="_blank">
+      Express
+    </a>
   </li>
   
   <li>
     <a href="https://www.npmjs.com/package/validator" target="_blank">
       Validator
     </a>
-    <ul>
-      <li>Escape user input</li>
-    </ul>
   </li>
   
   <li>
     <a href="https://www.npmjs.com/package/bcrypt" target="_blank">
       Bcrypt
     </a>
-    <ul>
-      <li>Hash & Salt user passwords</li>
-    </ul>
   </li>
   
   <li>
     <a href="https://dashboard.heroku.com/" target="_blank">
       Heroku
     </a>
-    <ul>
-      <li>Live Deployment</li>
-    </ul>
   </li>
 
 </ul>
