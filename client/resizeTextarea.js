@@ -39,7 +39,8 @@ for (let i of textareas) {
     // if you want older IE support
     i.addEventListener("input", function () {
       // Append hiddendiv to parent of textarea, so the size is correct
-      i.parentNode.appendChild(hiddenDiv);
+      // i.parentNode.appendChild(hiddenDiv);
+      i.parentElement.insertAdjacentElement("afterend", hiddenDiv);
 
       // Remove this if you want the user to be able to resize it in modern browsers
       i.style.resize = "none";
