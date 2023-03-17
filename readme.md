@@ -4,12 +4,12 @@
 <h5><small>Made with:</small><br /> HTML, CSS, JS, Node.JS</h5>
 
 <p>
-  <a href="https://simple-sockets.herokuapp.com/" target="_blank">
-    simple-sockets.herokuapp.com
-  </a>
+  <strike><a href="#" target="_blank">
+    simple-sockets
+  </a></strike>
   <br />
   <small><sup>
-    *May require 10 seconds for Heroku server to start
+    Heroku free tier gone... Not redeployed yet...
    </sup></small>
 </p>
 
