@@ -163,12 +163,15 @@ setNameInput.addEventListener("keyup", () => {
     setNameInput.value = setNameInput.value.slice(0, 25);
 });
 
+let myUserName = "";
+
 const setUsername = () => {
   const nameValue = setNameInput.value;
   socket.emit("setUsername", nameValue);
 };
 socket.on("nameSet", (payload) => {
   // console.log(`Name set to ${payload}`);
+  myUserName = payload;
   hideMainSections();
   joinCreateUI.classList.remove("d-none");
 });
@@ -412,12 +415,17 @@ socket.on("noMessageFound", () => {
   startHideErrorTimeout();
 });
 socket.on("newMessage", (userName, message) => {
+  // console.log("newmsg");
+
+  let style = "";
+  if (userName === myUserName) style = "text-align: right;";
+
   chatRoomMessages.insertAdjacentHTML(
     "afterbegin",
-    `<div class="chat-msg">
-      <p class="chat-msg-name">${userName}:</p>
-      <p class="chat-msg-txt">${message}</p>
-    </div>`
+    `<div class="chat-msg" style="${style}">
+        <p class="chat-msg-name">${userName}:</p>
+        <p class="chat-msg-txt">${message}</p>
+      </div>`
   );
 });
 // END Send Message
