@@ -4,12 +4,13 @@
 <h5><small>Made with:</small><br /> HTML, CSS, JS, Node.JS</h5>
 
 <p>
-  <strike><a href="#" target="_blank">
+  <a href="https://paulbh.com/simplesockets" target="_blank">
     simple-sockets
-  </a></strike>
+  </a>
   <br />
   <small><sup>
-    Heroku free tier gone... Not redeployed yet...
+    <strike>Heroku free tier gone... Not redeployed yet...</strike><br />
+    Redeployed on my server
    </sup></small>
 </p>
 
@@ -40,10 +41,10 @@
 	<li>Expanding textarea**</li>
 </ul>
 
-<p><small><em>* Normally a textarea does not auto-resize, I used a hack to create a "shadow clone" that matches the content of the textarea, becomes visible briefly to get a height, sets the hight of the real textarea to match, before hiding again.</em></small></p>
+<p><small><em>* Normally a textarea does not auto-resize, I found a hack to create a "shadow clone" that matches the content of the textarea, becomes visible briefly to get a height, sets the hight of the real textarea to match, before hiding again.</em></small></p>
 
 <h5>Profanity filtering</h5>
-<p>Currently this is only enabled for usernames, I will need to find a more efficient way to do messages.</p>
+<p>Currently this is only enabled for usernames, I am interested in a more efficient way to do long messages.</p>
 
 <h2>Libraries / Frameworks / Packages</h2>
 <ul>
