@@ -3,8 +3,9 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
+// NGINX serving front end static folder
 // Set static folder for front-end
-app.use(express.static("./client"));
+// app.use(express.static("./client"));
 
 // Create a server const for socket.io to use
 // Normally we just do app.listen here
@@ -46,7 +47,7 @@ const onConnection = (socket) => {
 
 io.on("connection", onConnection);
 
-// Serves our front end
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/index.html"));
-});
+// NGINX is serving our index.html directly
+// app.get("/simplesockets", function (req, res) {
+//   res.sendFile(path.join(__dirname, "./client/index.html"));
+// });
